@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap");
+
 * {
   box-sizing: border-box;
 }
@@ -423,8 +425,9 @@ video {
 
 .site-footer p,
 .site-footer li {
-  font-size: 1.3rem;
-  line-height: 1.7;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 24px;
 }
 
 .site-footer ul {
