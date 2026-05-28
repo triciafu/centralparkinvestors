@@ -392,53 +392,90 @@ video {
 .site-footer {
   background: #000;
   color: #fff;
-  padding: 3.6rem 5rem;
+  padding: 36px 5rem 36px;
+}
+
+.site-footer,
+.site-footer p,
+.site-footer a,
+.site-footer li,
+.site-footer span,
+.site-footer small,
+.site-footer h2,
+.site-footer h3 {
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: .08em;
+  line-height: 1.8;
 }
 
 .site-footer a {
   color: #fff;
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: .25rem;
 }
 
 .footer-contact {
-  border-bottom: 1px solid rgba(255, 255, 255, .24);
-  margin-bottom: 3.6rem;
-  padding-bottom: 3.6rem;
-  text-align: center;
+  display: none;
 }
 
 .footer-contact h2,
 .site-footer h3 {
-  margin: 0 0 1.4rem;
-  font-size: 1.2rem;
-  font-weight: 400;
-  letter-spacing: .08em;
+  margin: 0;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  line-height: 1.8;
   text-transform: uppercase;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 4rem;
-  max-width: 120rem;
-  margin: 0 auto 3.2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6rem;
+  max-width: 118rem;
+  margin: 0 auto;
+  padding-top: 3.8rem;
+  border-top: .1rem solid rgba(255, 255, 255, .12);
 }
 
 .site-footer p,
-.site-footer li {
-  font-size: 13px;
-  font-weight: 300;
-  line-height: 24px;
+.site-footer ul {
+  margin-top: 1.8rem;
+  margin-bottom: 0;
+}
+
+.site-footer p:first-child {
+  margin-top: 1.8rem;
 }
 
 .site-footer ul {
   list-style: none;
-  margin: 0;
   padding: 0;
+}
+
+.site-footer li + li {
+  margin-top: .8rem;
 }
 
 .site-footer small {
   display: block;
+  margin-top: 4.8rem;
   text-align: center;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: .12em;
+  line-height: 1.8;
+  text-transform: uppercase;
+  opacity: .8;
 }
 
 @media (max-width: 767px) {
@@ -535,6 +572,22 @@ video {
   }
 
   .site-footer {
-    padding: 3.6rem 2rem;
+    padding: 5.6rem 2.8rem 3.6rem;
+  }
+
+  .site-footer,
+  .site-footer p,
+  .site-footer a,
+  .site-footer li,
+  .site-footer span,
+  .site-footer small,
+  .site-footer h2,
+  .site-footer h3 {
+    font-size: 10px;
+  }
+
+  .footer-grid {
+    gap: 3.2rem;
+    padding-top: 3.2rem;
   }
 }
