@@ -1,0 +1,291 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root = path.resolve('.');
+const sourceRoot = '/Users/triciafullerton/Downloads/CPI';
+const themeZip = '/Users/triciafullerton/Downloads/theme_export__centralparkinvestors-com-dawn__28MAY2026-0318pm.zip';
+const heroVideo = '/Users/triciafullerton/Desktop/Miscellaneous/CPI/hero_1.mp4';
+
+const pages = [
+  {
+    source: 'Private Access – CENTRAL PARK INVESTORS.html',
+    output: 'pages/authorized-users/index.html',
+    url: '/pages/authorized-users',
+    title: 'Private Access',
+    type: 'page',
+  },
+  {
+    source: 'California Closets_ Commercial Dispute – CENTRAL PARK INVESTORS.html',
+    output: 'pages/cc01/index.html',
+    url: '/pages/cc01',
+    title: 'California Closets: Commercial Dispute',
+    type: 'page',
+  },
+  {
+    source: 'California Closets - Exhibit A – CENTRAL PARK INVESTORS.html',
+    output: 'pages/cc01-exhibita/index.html',
+    url: '/pages/cc01-exhibita',
+    title: 'California Closets - Exhibit A',
+    type: 'page',
+  },
+  {
+    source: 'California Closets - Exhibit B – CENTRAL PARK INVESTORS.html',
+    output: 'pages/cc01-exhibitb/index.html',
+    url: '/pages/cc01-exhibitb',
+    title: 'California Closets - Exhibit B',
+    type: 'page',
+  },
+  {
+    source: 'California Closets - Exhibit C – CENTRAL PARK INVESTORS.html',
+    output: 'pages/cc01-exhibitc/index.html',
+    url: '/pages/cc01-exhibitc',
+    title: 'California Closets - Exhibit C',
+    type: 'page',
+  },
+  {
+    source: 'California Closets - Exhibit D – CENTRAL PARK INVESTORS.html',
+    output: 'pages/cc01-exhibitd/index.html',
+    url: '/pages/cc01-exhibitd',
+    title: 'California Closets - Exhibit D',
+    type: 'page',
+  },
+  {
+    source: 'California Closets - Exhibit E – CENTRAL PARK INVESTORS.html',
+    output: 'pages/exhibith/index.html',
+    url: '/pages/exhibith',
+    title: 'California Closets - Exhibit H',
+    type: 'page',
+  },
+  {
+    source: 'Contact – CENTRAL PARK INVESTORS.html',
+    output: 'pages/contact/index.html',
+    url: '/pages/contact',
+    title: 'Contact',
+    type: 'contact',
+  },
+  {
+    source: 'Privacy Policy – CENTRAL PARK INVESTORS.html',
+    output: 'pages/privacy-policy/index.html',
+    url: '/pages/privacy-policy',
+    title: 'Privacy Policy',
+    type: 'page',
+  },
+  {
+    source: 'Terms and Conditions – CENTRAL PARK INVESTORS.html',
+    output: 'pages/terms-and-conditions/index.html',
+    url: '/pages/terms-and-conditions',
+    title: 'Terms and Conditions',
+    type: 'page',
+  },
+];
+
+function readSource(file) {
+  return fs.readFileSync(path.join(sourceRoot, file), 'utf8');
+}
+
+function writeFile(file, content) {
+  fs.mkdirSync(path.dirname(path.join(root, file)), { recursive: true });
+  fs.writeFileSync(path.join(root, file), content);
+}
+
+function cleanHtml(html) {
+  return html
+    .replace(/<script>\s*document\.getElementById\('cpi-code-gate-form'\)[\s\S]*?<\/script>/, '')
+    .replaceAll('https://centralparkinvestors.com/pages/exhibit-e', '/pages/exhibith')
+    .replaceAll('https://centralparkinvestors.com/pages/exhibith', '/pages/exhibith')
+    .replaceAll('https://centralparkinvestors.com/pages/authorized-users', '/pages/authorized-users')
+    .replaceAll('https://centralparkinvestors.com/pages/cc01-exhibita', '/pages/cc01-exhibita')
+    .replaceAll('https://centralparkinvestors.com/pages/cc01-exhibitb', '/pages/cc01-exhibitb')
+    .replaceAll('https://centralparkinvestors.com/pages/cc01-exhibitc', '/pages/cc01-exhibitc')
+    .replaceAll('https://centralparkinvestors.com/pages/cc01-exhibitd', '/pages/cc01-exhibitd')
+    .replaceAll('https://centralparkinvestors.com/pages/cc01', '/pages/cc01')
+    .replaceAll('https://centralparkinvestors.com/pages/contact', '/pages/contact')
+    .replaceAll('https://centralparkinvestors.com/pages/privacy-policy', '/pages/privacy-policy')
+    .replaceAll('https://centralparkinvestors.com/pages/terms-and-conditions', '/pages/terms-and-conditions')
+    .replaceAll('href="https://centralparkinvestors.com/pages/ops@centralparkinvestors.com"', 'href="mailto:ops@centralparkinvestors.com"')
+    .replaceAll('target="_blank"', '')
+    .replaceAll('rel="noopener"', '');
+}
+
+function extractPageFragment(source) {
+  const match = source.match(/<div class="page-width page-width--narrow[\s\S]*?<\/section>/);
+  if (!match) throw new Error('Could not extract page fragment');
+  return cleanHtml(match[0].replace(/\s*<\/section>\s*$/, ''));
+}
+
+function extractContactFragment(source) {
+  const match = source.match(/<div class="contact color-scheme-1 gradient[\s\S]*?<\/section>/);
+  if (!match) throw new Error('Could not extract contact fragment');
+  let fragment = match[0].replace(/\s*<\/section>\s*$/, '');
+  fragment = fragment
+    .replace(/<form method="post" action="https:\/\/centralparkinvestors\.com\/contact#ContactForm"[^>]*>/, '<form name="contact" method="post" data-netlify="true" netlify-honeypot="bot-field" id="ContactForm" class="contact__form isolate">')
+    .replace('<input type="hidden" name="form_type" value="contact">', '<input type="hidden" name="form-name" value="contact"><p class="visually-hidden"><label>Do not fill this out: <input name="bot-field"></label></p>')
+    .replace('<input type="hidden" name="utf8" value="✓">', '');
+  return cleanHtml(fragment);
+}
+
+function layout({ title, description = '', canonicalPath, body, assetPrefix = '' }) {
+  const url = canonicalPath === '/' ? 'https://centralparkinvestors.com/' : `https://centralparkinvestors.com${canonicalPath}`;
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${title} - CENTRAL PARK INVESTORS</title>
+  <meta name="description" content="${description || 'Central Park Investors is a privately held firm engaged in long-term investment and asset management.'}">
+  <link rel="canonical" href="${url}">
+  <meta property="og:title" content="${title}">
+  <meta property="og:url" content="${url}">
+  <meta property="og:site_name" content="CENTRAL PARK INVESTORS">
+  <link rel="stylesheet" href="${assetPrefix}assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">
+      <span class="brand__title">Central Park Investors</span>
+      <span class="brand__subtitle">Private Asset Management</span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="/pages/authorized-users">Authorized Users</a>
+      <a href="/pages/contact">Contact</a>
+    </nav>
+  </header>
+  <main id="main">
+${body}
+  </main>
+  <footer class="site-footer">
+    <section class="footer-contact">
+      <h2>Contact</h2>
+      <p>For inquiries, please contact Central Park Investors at <a href="mailto:contact@centralparkinvestors.com">contact@centralparkinvestors.com</a>.</p>
+    </section>
+    <div class="footer-grid">
+      <section>
+        <h3>Central Park Investors</h3>
+        <p>Central Park Investors is a privately held firm engaged in long-term investment and asset management.</p>
+        <p>This site is for informational purposes only and does not constitute an offer to sell or solicitation for an offer to buy securities or investment services.</p>
+        <p>Central Park Investors is not affiliated with the Central Park Conservancy or the City of New York.</p>
+      </section>
+      <section>
+        <h3>Legal Policies</h3>
+        <ul>
+          <li><a href="/pages/contact">Contact Us</a></li>
+          <li><a href="/pages/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/pages/terms-and-conditions">Terms and Conditions</a></li>
+        </ul>
+      </section>
+      <section>
+        <h3>Contact</h3>
+        <p><a href="mailto:ops@centralparkinvestors.com">ops@centralparkinvestors.com</a></p>
+        <p>Based in New York, NY and Miami Beach, FL.</p>
+      </section>
+    </div>
+    <small>© 2026 CENTRAL PARK INVESTORS</small>
+  </footer>
+  <script src="${assetPrefix}assets/site.js"></script>
+</body>
+</html>
+`;
+}
+
+function homepage() {
+  return layout({
+    title: 'CENTRAL PARK INVESTORS',
+    canonicalPath: '/',
+    assetPrefix: '',
+    body: `    <section class="hero-video" aria-label="Central Park Investors">
+      <video autoplay muted loop playsinline poster="assets/0de42eea49fd4fe89478ad34f9ad8de8.thumbnail.0000000000_1100x.jpg">
+        <source src="assets/hero_1.mp4" type="video/mp4">
+      </video>
+    </section>
+
+    <section class="cpi-intro">
+      <div class="cpi-intro__wrap">
+        <div class="cpi-intro__card">
+          <h1 class="cpi-intro__title">Private Asset Management</h1>
+          <div class="cpi-intro__text">
+            <p>Long-term ownership and disciplined capital across real estate, operating companies, and proprietary brands. Central Park Investors manages investment strategy, asset operations, and financial governance for a portfolio of privately held businesses and properties.</p>
+            <p>This site is for informational purposes only and does not constitute an offer to sell or a solicitation for an offer to buy securities or investment services.</p>
+          </div>
+          <a class="cpi-intro__button" href="/pages/authorized-users">Authorized Users</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cpi-asset-areas">
+      <div class="cpi-asset-areas__wrap">
+        <div class="cpi-asset-areas__divider"></div>
+        <h2 class="cpi-asset-areas__title">Investment Areas</h2>
+        <div class="cpi-asset-areas__grid">
+          <article class="cpi-asset-card">
+            <img class="cpi-asset-card__image" src="assets/1a.png" alt="Real Estate">
+            <div class="cpi-asset-card__body">
+              <h3 class="cpi-asset-card__heading">Real Estate</h3>
+              <p class="cpi-asset-card__text">Privately held, long-term ownership, includes operational oversight, financial administration, and vendor management.</p>
+            </div>
+          </article>
+          <article class="cpi-asset-card">
+            <img class="cpi-asset-card__image" src="assets/4a.png" alt="Private Business">
+            <div class="cpi-asset-card__body">
+              <h3 class="cpi-asset-card__heading">Private Business</h3>
+              <p class="cpi-asset-card__text">Privately held operating companies, with a focus on technology, manufacturing, and creating long-term value.</p>
+            </div>
+          </article>
+          <article class="cpi-asset-card">
+            <img class="cpi-asset-card__image" src="assets/2a.png" alt="Strategic Capital">
+            <div class="cpi-asset-card__body">
+              <h3 class="cpi-asset-card__heading">Strategic Capital</h3>
+              <p class="cpi-asset-card__text">Additional private assets and special situations where long-term fundamentals and disciplined management align.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cpi-feature">
+      <div class="cpi-feature__wrap">
+        <div class="cpi-feature__grid">
+          <img class="cpi-feature__image" src="assets/9a.png" alt="Private Business">
+          <div>
+            <div class="cpi-feature__eyebrow">Investments</div>
+            <h2 class="cpi-feature__title">Private Business</h2>
+            <div class="cpi-feature__text">
+              <p>Central Park Investors owns and operates a portfolio focused on manufacturing and supplies, supporting commercial and institutional customers across various categories.</p>
+              <p>While each company is managed independently, capital allocation and governance are coordinated centrally to ensure the most efficiencies.</p>
+              <p>Emphasis on enduring businesses with strong cash flow, resilient demand, and disciplined capital and risk management.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>`,
+  });
+}
+
+function copyAsset(source, dest) {
+  fs.copyFileSync(source, path.join(root, 'assets', dest));
+}
+
+fs.rmSync(path.join(root, 'pages'), { recursive: true, force: true });
+fs.mkdirSync(path.join(root, 'assets'), { recursive: true });
+for (const asset of ['0de42eea49fd4fe89478ad34f9ad8de8.thumbnail.0000000000_1100x.jpg', '1a.png', '2a.png', '4a.png', '9a.png']) {
+  copyAsset(path.join(sourceRoot, 'index_files', asset), asset);
+}
+copyAsset(heroVideo, 'hero_1.mp4');
+
+writeFile('index.html', homepage());
+
+for (const page of pages) {
+  const source = readSource(page.source);
+  let fragment = page.type === 'contact' ? extractContactFragment(source) : extractPageFragment(source);
+  if (page.url === '/pages/exhibith') {
+    fragment = fragment.replaceAll('California Closets - Exhibit E', 'California Closets - Exhibit H');
+  }
+  const body = `    <section class="${page.type === 'contact' ? 'contact-page' : 'content-page'}">\n      ${fragment}\n    </section>`;
+  writeFile(page.output, layout({ title: page.title, canonicalPath: page.url, body, assetPrefix: '../../' }));
+}
+
+writeFile(
+  'pages/exhibit-e/index.html',
+  `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/pages/exhibith"><link rel="canonical" href="https://centralparkinvestors.com/pages/exhibith"><title>Redirecting - CENTRAL PARK INVESTORS</title></head><body><p><a href="/pages/exhibith">Continue to Exhibit H</a></p></body></html>\n`,
+);
+
+console.log(`Built CPI static site from ${themeZip}`);
