@@ -392,7 +392,7 @@ video {
 .cpi-footer {
   background: #000;
   color: #fff;
-  padding: 36px 5rem;
+  padding: 36px 0;
 }
 
 .cpi-footer,
@@ -409,9 +409,9 @@ video {
 }
 
 .cpi-footer__inner {
-  max-width: 118rem;
+  max-width: 110rem;
   margin: 0 auto;
-  padding-bottom: 3rem;
+  padding: 0 2.4rem 3rem;
 }
 
 .cpi-footer__columns {
