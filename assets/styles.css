@@ -426,6 +426,11 @@ video {
   color: #fff !important;
 }
 
+.footer__contact-band {
+  display: none !important;
+}
+
+.footer__contact-heading,
 .footer__custom-title {
   margin: 0;
   font-size: 9px !important;
@@ -449,7 +454,11 @@ video {
 }
 
 .site-footer p,
-.site-footer li {
+.site-footer li,
+.footer__custom p,
+.footer__custom li,
+.footer__custom-copy p,
+.footer__custom-links li {
   font-size: 9px !important;
   line-height: 1.8 !important;
   letter-spacing: .08em !important;
