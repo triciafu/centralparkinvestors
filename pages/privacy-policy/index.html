@@ -92,6 +92,96 @@
 </div>
     </section>
   </main>
+  <style>
+    .cpi-footer {
+      background: #000 !important;
+      color: #fff !important;
+      padding: 36px 5rem !important;
+      font-family: Montserrat, sans-serif !important;
+    }
+
+    .cpi-footer * {
+      box-sizing: border-box;
+    }
+
+    .cpi-footer__inner {
+      max-width: 118rem;
+      margin: 0 auto;
+      padding-bottom: 3rem;
+    }
+
+    .cpi-footer__columns {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: 6rem !important;
+      align-items: start;
+      padding-top: 3.8rem;
+      border-top: .1rem solid rgba(255, 255, 255, .12);
+    }
+
+    .cpi-footer__heading,
+    .cpi-footer p,
+    .cpi-footer li,
+    .cpi-footer a,
+    .cpi-footer small {
+      color: #fff !important;
+      font-family: Montserrat, sans-serif !important;
+      font-size: 9px !important;
+      line-height: 1.8 !important;
+      letter-spacing: .08em !important;
+    }
+
+    .cpi-footer__heading {
+      margin: 0 !important;
+      font-weight: 700 !important;
+      text-transform: uppercase;
+    }
+
+    .cpi-footer p,
+    .cpi-footer__links {
+      margin: 1.8rem 0 0 !important;
+      padding: 0 !important;
+      font-weight: 400 !important;
+    }
+
+    .cpi-footer__links {
+      list-style: none !important;
+    }
+
+    .cpi-footer__links li + li {
+      margin-top: .8rem !important;
+    }
+
+    .cpi-footer a {
+      text-decoration: none !important;
+    }
+
+    .cpi-footer a:hover,
+    .cpi-footer a:focus {
+      text-decoration: underline !important;
+      text-underline-offset: .25rem;
+    }
+
+    .cpi-footer__copyright {
+      display: block !important;
+      margin-top: 4.8rem !important;
+      text-align: center !important;
+      text-transform: uppercase;
+      opacity: .8;
+    }
+
+    @media (max-width: 767px) {
+      .cpi-footer {
+        padding: 5.6rem 2.8rem 3.6rem !important;
+      }
+
+      .cpi-footer__columns {
+        grid-template-columns: 1fr !important;
+        gap: 3.2rem !important;
+        padding-top: 3.2rem;
+      }
+    }
+  </style>
   <footer class="cpi-footer">
     <div class="cpi-footer__inner">
       <div class="cpi-footer__columns">
