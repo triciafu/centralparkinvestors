@@ -436,18 +436,23 @@ video {
 }
 
 .footer__custom-columns {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: flex-start;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 6rem;
+  align-items: flex-start;
   padding-top: 3.8rem;
   border-top: .1rem solid rgba(255, 255, 255, .12);
 }
 
 .footer__custom-column {
-  flex: 0 0 calc(33.333% - 4rem);
   min-width: 0;
+}
+
+.site-footer p,
+.site-footer li {
+  font-size: 9px !important;
+  line-height: 1.8 !important;
+  letter-spacing: .08em !important;
 }
 
 .footer__custom-copy,
