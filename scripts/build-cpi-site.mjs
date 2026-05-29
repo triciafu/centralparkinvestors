@@ -158,8 +158,8 @@ function extractContactFragment(source) {
   if (!match) throw new Error('Could not extract contact fragment');
   let fragment = match[0].replace(/\s*<\/section>\s*$/, '');
   fragment = fragment
-    .replace(/<form method="post" action="https:\/\/centralparkinvestors\.com\/contact#ContactForm"[^>]*>/, '<form name="contact" method="post" data-netlify="true" netlify-honeypot="bot-field" id="ContactForm" class="contact__form isolate">')
-    .replace('<input type="hidden" name="form_type" value="contact">', '<input type="hidden" name="form-name" value="contact"><p class="visually-hidden"><label>Do not fill this out: <input name="bot-field"></label></p>')
+    .replace(/<form method="post" action="https:\/\/centralparkinvestors\.com\/contact#ContactForm"[^>]*>/, '<form name="contact" method="post" action="/api/contact" id="ContactForm" class="contact__form isolate">')
+    .replace('<input type="hidden" name="form_type" value="contact">', '<input type="hidden" name="form-name" value="contact"><p class="visually-hidden"><label>Do not fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>')
     .replace('<input type="hidden" name="utf8" value="✓">', '');
   return cleanHtml(fragment);
 }

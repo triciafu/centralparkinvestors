@@ -655,6 +655,28 @@ sticky-header.header-wrapper,
   opacity: .5;
 }
 
+.contact__button .button:disabled {
+  cursor: default;
+  opacity: .5;
+}
+
+.contact__message {
+  margin-top: 16px;
+  color: #7a7a7a;
+  font-family: Montserrat, sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.contact__message[data-tone="error"] {
+  color: #7a2f2f;
+}
+
+.contact__message[data-tone="success"] {
+  color: #2f6544;
+}
+
 .visually-hidden {
   position: absolute !important;
   width: 1px;
