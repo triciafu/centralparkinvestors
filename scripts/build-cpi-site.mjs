@@ -137,7 +137,7 @@ function layout({ title, description = '', canonicalPath, body, assetPrefix = ''
   <meta property="og:title" content="${title}">
   <meta property="og:url" content="${url}">
   <meta property="og:site_name" content="CENTRAL PARK INVESTORS">
-  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-contact-text">
+  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-contact-align">
 </head>
 <body>
   <div id="shopify-section-sections--25978986266913__header" class="shopify-section shopify-section-group-header-group section-header">

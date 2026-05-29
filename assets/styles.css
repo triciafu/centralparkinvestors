@@ -449,7 +449,7 @@ sticky-header.header-wrapper,
 
 .contact__content {
   max-width: 500px;
-  margin: 0 auto 24px;
+  margin: 0 auto 36px;
   text-align: center;
 }
 
@@ -468,7 +468,7 @@ sticky-header.header-wrapper,
 }
 
 .contact__content p {
-  margin: 0 0 24px;
+  margin: 0;
 }
 
 .contact__content p:last-child {
@@ -476,14 +476,20 @@ sticky-header.header-wrapper,
 }
 
 .contact__content a,
-.contact__content a:visited,
+.contact__content a:visited {
+  color: #0645ad !important;
+  font-family: Montserrat, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  line-height: 24px !important;
+  text-decoration: none !important;
+}
+
 .contact__content a:hover,
 .contact__content a:focus {
-  color: #000 !important;
+  color: #0b5ed7 !important;
   font-weight: 400 !important;
-  text-decoration: underline !important;
-  text-decoration-thickness: 1px;
-  text-underline-offset: .25rem;
+  text-decoration: none !important;
 }
 
 .contact__form {
