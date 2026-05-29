@@ -103,6 +103,7 @@ function cleanHtml(html) {
     .replaceAll('https://centralparkinvestors.com/pages/privacy-policy', '/pages/privacy-policy')
     .replaceAll('https://centralparkinvestors.com/pages/terms-and-conditions', '/pages/terms-and-conditions')
     .replaceAll('href="https://centralparkinvestors.com/pages/ops@centralparkinvestors.com"', 'href="mailto:ops@centralparkinvestors.com"')
+    .replaceAll('padding: 80px 24px;', 'padding: 50px 24px;')
     .replaceAll('target="_blank"', '')
     .replaceAll('rel="noopener"', '');
 }
@@ -137,7 +138,7 @@ function layout({ title, description = '', canonicalPath, body, assetPrefix = ''
   <meta property="og:title" content="${title}">
   <meta property="og:url" content="${url}">
   <meta property="og:site_name" content="CENTRAL PARK INVESTORS">
-  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-contact-gap-30">
+  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-code-gate-padding">
 </head>
 <body class="${assetPrefix ? 'page-template' : 'home-template'}">
   <div id="shopify-section-sections--25978986266913__header" class="shopify-section shopify-section-group-header-group section-header">
