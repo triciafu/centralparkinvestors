@@ -35,6 +35,13 @@ video {
   max-width: 100%;
 }
 
+.section-header,
+sticky-header.header-wrapper,
+.header-wrapper {
+  display: block;
+  width: 100%;
+}
+
 .header-wrapper {
   background: #000;
   border-bottom: none;
@@ -45,11 +52,17 @@ video {
   margin-bottom: 0;
 }
 
+.page-width {
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
 .header {
   min-height: 7.2rem;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: end;
+  width: 100%;
   padding: 5rem 5rem 1.2rem;
   background: #000;
   color: #fff;
@@ -154,9 +167,12 @@ video {
   top: -1px;
 }
 
-.header__authorized-users-icon svg {
+.header__authorized-users-icon svg,
+.header__authorized-users-icon .icon {
+  display: block;
   width: .9rem;
   height: .9rem;
+  max-width: .9rem;
 }
 
 .header__authorized-users-text {
