@@ -381,7 +381,7 @@ sticky-header.header-wrapper,
 .contact__title {
   margin: 0 0 5.6rem;
   color: #000;
-  font-size: 2.8rem;
+  font-size: 20px;
   font-weight: 400;
   letter-spacing: .08em;
   line-height: 1.2;
@@ -439,7 +439,7 @@ sticky-header.header-wrapper,
 .contact__content,
 .contact__content p {
   color: #000;
-  font-size: 1.6rem !important;
+  font-size: 13px !important;
   font-weight: 400;
   letter-spacing: .06em;
   line-height: 1.6 !important;
@@ -467,7 +467,7 @@ sticky-header.header-wrapper,
   background: #fff;
   color: #000;
   font-family: Montserrat, sans-serif;
-  font-size: 1.4rem;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: .04em;
   line-height: 1.2;
@@ -734,12 +734,12 @@ sticky-header.header-wrapper,
 
   .contact__title {
     margin-bottom: 3.2rem;
-    font-size: 2.2rem;
+    font-size: 20px;
   }
 
   .contact__content,
   .contact__content p {
-    font-size: 1.3rem !important;
+    font-size: 13px !important;
   }
 
   .cpi-footer {
