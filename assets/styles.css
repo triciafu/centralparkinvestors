@@ -570,7 +570,7 @@ sticky-header.header-wrapper,
 }
 
 .contact .text-area {
-  min-height: 75px;
+  min-height: 50px;
   resize: vertical;
 }
 
