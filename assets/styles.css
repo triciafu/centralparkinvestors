@@ -380,6 +380,11 @@ sticky-header.header-wrapper,
   padding: 0;
 }
 
+.authorized-users-page {
+  min-height: auto;
+  padding-bottom: 0;
+}
+
 .page-width {
   max-width: 120rem;
   margin: 0 auto;

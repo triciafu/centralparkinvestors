@@ -441,7 +441,8 @@ for (const page of pages) {
   if (page.url === '/pages/exhibith') {
     fragment = fragment.replaceAll('California Closets - Exhibit E', 'California Closets - Exhibit H');
   }
-  const body = `    <section class="${page.type === 'contact' ? 'contact-page' : 'content-page'}">\n      ${fragment}\n    </section>`;
+  const sectionClass = page.type === 'contact' ? 'contact-page' : page.url === '/pages/authorized-users' ? 'content-page authorized-users-page' : 'content-page';
+  const body = `    <section class="${sectionClass}">\n      ${fragment}\n    </section>`;
   writeFile(page.output, layout({ title: page.title, canonicalPath: page.url, body, assetPrefix: '../../' }));
 }
 
