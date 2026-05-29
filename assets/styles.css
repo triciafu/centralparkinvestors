@@ -661,12 +661,13 @@ sticky-header.header-wrapper,
   gap: 1.2rem;
   justify-content: center;
   flex-wrap: wrap;
+  align-items: flex-end;
 }
 
 #cpi-access-code,
 .cpi-code-gate__input {
-  width: 26rem;
-  padding: 1.2rem 1.4rem;
+  width: 32rem;
+  padding: 2rem 1.8rem;
   border: 1px solid #b5b5b5;
   font: inherit;
   font-size: 1.2rem;

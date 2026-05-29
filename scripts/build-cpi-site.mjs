@@ -104,6 +104,9 @@ function cleanHtml(html) {
     .replaceAll('https://centralparkinvestors.com/pages/terms-and-conditions', '/pages/terms-and-conditions')
     .replaceAll('href="https://centralparkinvestors.com/pages/ops@centralparkinvestors.com"', 'href="mailto:ops@centralparkinvestors.com"')
     .replaceAll('padding: 80px 24px;', 'padding: 50px 24px;')
+    .replaceAll('flex-wrap: wrap;\n  }\n\n  #cpi-access-code,', 'flex-wrap: wrap;\n    align-items: flex-end;\n  }\n\n  #cpi-access-code,')
+    .replaceAll('width: 260px;', 'width: 320px;')
+    .replaceAll('padding: 12px 14px;', 'padding: 20px 18px;')
     .replaceAll('target="_blank"', '')
     .replaceAll('rel="noopener"', '');
 }
@@ -138,7 +141,7 @@ function layout({ title, description = '', canonicalPath, body, assetPrefix = ''
   <meta property="og:title" content="${title}">
   <meta property="og:url" content="${url}">
   <meta property="og:site_name" content="CENTRAL PARK INVESTORS">
-  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-code-gate-padding">
+  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-code-input-size">
 </head>
 <body class="${assetPrefix ? 'page-template' : 'home-template'}">
   <div id="shopify-section-sections--25978986266913__header" class="shopify-section shopify-section-group-header-group section-header">
