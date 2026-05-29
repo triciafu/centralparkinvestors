@@ -4,6 +4,38 @@ function setFormMessage(container, text, tone = '') {
   container.dataset.tone = tone;
 }
 
+function ensureContactMessage() {
+  const form = document.getElementById('ContactForm');
+  if (!form) return null;
+
+  let message = document.getElementById('ContactForm-message');
+  if (!message) {
+    message = document.createElement('div');
+    message.id = 'ContactForm-message';
+    message.className = 'contact__message';
+    form.appendChild(message);
+  }
+
+  return message;
+}
+
+function showContactQueryMessage() {
+  const params = new URLSearchParams(window.location.search);
+  if (!params.has('sent') && !params.has('error')) return;
+
+  const message = ensureContactMessage();
+  if (!message) return;
+
+  if (params.has('sent')) {
+    setFormMessage(message, 'Thank you. Your message has been sent.', 'success');
+    return;
+  }
+
+  setFormMessage(message, 'Your message could not be sent. Please email ops@centralparkinvestors.com directly.', 'error');
+}
+
+document.addEventListener('DOMContentLoaded', showContactQueryMessage);
+
 document.addEventListener('submit', async (event) => {
   const form = event.target;
   if (!(form instanceof HTMLFormElement)) return;
@@ -57,14 +89,8 @@ document.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const button = form.querySelector('button[type="submit"]');
-    let message = document.getElementById('ContactForm-message');
-
-    if (!message) {
-      message = document.createElement('div');
-      message.id = 'ContactForm-message';
-      message.className = 'contact__message';
-      form.appendChild(message);
-    }
+    const message = ensureContactMessage();
+    if (!message) return;
 
     const data = new FormData(form);
     const name = String(data.get('contact[Name]') || '').trim();

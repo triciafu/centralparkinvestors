@@ -42,6 +42,21 @@ function escapeHtml(value) {
     .replaceAll("'", '&#39;');
 }
 
+function wantsJson(request) {
+  const accept = request.headers.accept || '';
+  const contentType = request.headers['content-type'] || '';
+  return accept.includes('application/json') || contentType.includes('application/json');
+}
+
+function finish(request, response, status, payload, redirectUrl = '') {
+  if (!wantsJson(request) && redirectUrl) {
+    response.setHeader('Location', redirectUrl);
+    return response.status(status >= 400 ? 303 : 303).end();
+  }
+
+  return response.status(status).json(payload);
+}
+
 export default async function handler(request, response) {
   if (request.method !== 'POST') {
     response.setHeader('Allow', 'POST');
@@ -55,8 +70,10 @@ export default async function handler(request, response) {
     return response.status(400).json({ error: 'Invalid form submission.' });
   }
 
+  const redirectUrl = field(body, 'redirect') || '/pages/contact/?sent=1';
+
   if (field(body, 'bot-field')) {
-    return response.status(200).json({ message: 'Thank you. Your message has been sent.' });
+    return finish(request, response, 200, { message: 'Thank you. Your message has been sent.' }, redirectUrl);
   }
 
   const name = field(body, 'contact[Name]', 'name');
@@ -64,11 +81,11 @@ export default async function handler(request, response) {
   const comment = field(body, 'contact[Comment]', 'message');
 
   if (!name || !email || !comment) {
-    return response.status(400).json({ error: 'Please complete all fields.' });
+    return finish(request, response, 400, { error: 'Please complete all fields.' }, '/pages/contact/?error=missing');
   }
 
   if (!EMAIL_PATTERN.test(email)) {
-    return response.status(400).json({ error: 'Please enter a valid email address.' });
+    return finish(request, response, 400, { error: 'Please enter a valid email address.' }, '/pages/contact/?error=email');
   }
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -76,7 +93,7 @@ export default async function handler(request, response) {
   const toEmail = process.env.CONTACT_TO_EMAIL || 'ops@centralparkinvestors.com';
 
   if (!apiKey || !fromEmail || !toEmail) {
-    return response.status(500).json({ error: 'Contact form is not configured.' });
+    return finish(request, response, 500, { error: 'Contact form is not configured.' }, '/pages/contact/?error=config');
   }
 
   const subject = 'Central Park Investors contact form';
@@ -111,8 +128,8 @@ export default async function handler(request, response) {
   });
 
   if (!resendResponse.ok) {
-    return response.status(502).json({ error: 'Message delivery failed.' });
+    return finish(request, response, 502, { error: 'Message delivery failed.' }, '/pages/contact/?error=delivery');
   }
 
-  return response.status(200).json({ message: 'Thank you. Your message has been sent.' });
+  return finish(request, response, 200, { message: 'Thank you. Your message has been sent.' }, redirectUrl);
 }

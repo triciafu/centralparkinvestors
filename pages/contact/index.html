@@ -41,7 +41,7 @@
         Contact Us
       </h1><div class="contact__content rte">
         <p>For investment, operations, vendor, or authorized user inquiries, please send a message below or email <a href="mailto:ops@centralparkinvestors.com">ops@centralparkinvestors.com</a>.</p>
-      </div><form name="contact" method="post" action="/api/contact" id="ContactForm" class="contact__form isolate"><input type="hidden" name="form-name" value="contact"><p class="visually-hidden"><label>Do not fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p><input type="hidden" name="contact[tags]" value="website contact, ops">
+      </div><form name="contact" method="post" action="/api/contact" id="ContactForm" class="contact__form isolate"><input type="hidden" name="form-name" value="contact"><input type="hidden" name="redirect" value="/pages/contact/?sent=1"><p class="visually-hidden"><label>Do not fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p><input type="hidden" name="contact[tags]" value="website contact, ops">
       <input type="hidden" name="contact[Preferred recipient]" value="ops@centralparkinvestors.com"><div class="contact__fields">
         <div class="field">
           <input class="field__input" autocomplete="name" type="text" id="ContactForm-name" name="contact[Name]" value="" placeholder="ENTER NAME">
@@ -62,7 +62,7 @@
         <button type="submit" class="button">
           SUBMIT
         </button>
-      </div></form></div>
+      </div><div id="ContactForm-message" class="contact__message" aria-live="polite"></div></form></div>
 </div>
     </section>
   </main>
