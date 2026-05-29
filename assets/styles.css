@@ -386,11 +386,15 @@ sticky-header.header-wrapper,
 }
 
 .main-page-title {
-  margin: 0 0 3rem;
-  font-size: 4rem;
+  margin: 100px 0 50px;
+  color: #000;
+  font-family: Montserrat, sans-serif;
+  font-size: 20px;
   font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.15;
+  letter-spacing: .08em;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .contact__title {
@@ -517,7 +521,7 @@ sticky-header.header-wrapper,
 
 .contact__form {
   display: block;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .contact__fields {
@@ -848,7 +852,9 @@ sticky-header.header-wrapper,
   }
 
   .main-page-title {
-    font-size: 3rem;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 16px;
   }
 
   .contact__inner {
