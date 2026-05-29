@@ -51,7 +51,7 @@ sticky-header.header-wrapper,
   position: sticky;
   margin-bottom: 0;
   padding-top: 35px;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
   background: #000;
 }
 
@@ -136,7 +136,7 @@ sticky-header.header-wrapper,
 
 .header__authorized-users,
 .header__authorized-users:visited {
-  color: #fff;
+  color: #fff !important;
   display: inline-flex;
   align-items: center;
   gap: .7rem;
@@ -154,7 +154,7 @@ sticky-header.header-wrapper,
 .header__heading-link:focus,
 .header__authorized-users:hover,
 .header__authorized-users:focus {
-  color: #fff;
+  color: #fff !important;
   opacity: .85;
   text-decoration: none;
 }
@@ -271,7 +271,7 @@ sticky-header.header-wrapper,
 }
 
 .cpi-asset-areas__divider {
-  border-top: 1px solid #d9d4cc;
+  border-top: none;
   margin-bottom: 7.5rem;
 }
 
