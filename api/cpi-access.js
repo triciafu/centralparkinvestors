@@ -27,16 +27,40 @@ async function parseBody(request) {
   return parseRawBody(raw, contentType);
 }
 
+function parseAccessRoutes() {
+  const routes = new Map();
+  const routeList = process.env.CPI_ACCESS_ROUTES || '';
+
+  for (const line of routeList.split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+
+    const separator = trimmed.indexOf('=');
+    if (separator === -1) continue;
+
+    const pin = trimmed.slice(0, separator).trim();
+    const url = trimmed.slice(separator + 1).trim();
+    if (pin && url) routes.set(pin, url);
+  }
+
+  const fallbackPin = process.env.CPI_ACCESS_PIN;
+  const fallbackUrl = process.env.CPI_ACCESS_REDIRECT_URL;
+  if (fallbackPin && fallbackUrl && !routes.has(fallbackPin)) {
+    routes.set(fallbackPin, fallbackUrl);
+  }
+
+  return routes;
+}
+
 export default async function handler(request, response) {
   if (request.method !== 'POST') {
     response.setHeader('Allow', 'POST');
     return response.status(405).json({ error: 'Method not allowed.' });
   }
 
-  const expectedPin = process.env.CPI_ACCESS_PIN;
-  const redirectUrl = process.env.CPI_ACCESS_REDIRECT_URL;
+  const accessRoutes = parseAccessRoutes();
 
-  if (!expectedPin || !redirectUrl) {
+  if (!accessRoutes.size) {
     return response.status(500).json({ error: 'Access is not configured.' });
   }
 
@@ -48,8 +72,9 @@ export default async function handler(request, response) {
   }
 
   const submittedCode = String(body?.code || body?.pin || '').trim();
+  const redirectUrl = accessRoutes.get(submittedCode);
 
-  if (!submittedCode || submittedCode !== expectedPin) {
+  if (!redirectUrl) {
     return response.status(401).json({ error: 'Invalid PIN code.' });
   }
 
