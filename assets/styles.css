@@ -456,6 +456,8 @@ sticky-header.header-wrapper,
 }
 
 .contact__content {
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 56px;
   text-align: center;
 }
@@ -482,7 +484,7 @@ sticky-header.header-wrapper,
 }
 
 .contact__content p:last-child {
-  margin-bottom: 0;
+  margin-bottom: 20px;
 }
 
 .contact__content a,
