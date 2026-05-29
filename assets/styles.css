@@ -517,6 +517,7 @@ sticky-header.header-wrapper,
 
 .contact__form {
   display: block;
+  margin-top: 5px;
 }
 
 .contact__fields {
@@ -524,7 +525,7 @@ sticky-header.header-wrapper,
 }
 
 .contact .field {
-  margin-bottom: 12px;
+  margin-bottom: 2px;
   background: transparent;
   box-shadow: none;
 }
