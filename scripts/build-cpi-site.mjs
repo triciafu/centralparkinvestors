@@ -137,7 +137,7 @@ function layout({ title, description = '', canonicalPath, body, assetPrefix = ''
   <meta property="og:title" content="${title}">
   <meta property="og:url" content="${url}">
   <meta property="og:site_name" content="CENTRAL PARK INVESTORS">
-  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-page-title-match">
+  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-footer-caps-spacing">
 </head>
 <body class="${assetPrefix ? 'page-template' : 'home-template'}">
   <div id="shopify-section-sections--25978986266913__header" class="shopify-section shopify-section-group-header-group section-header">
@@ -188,7 +188,7 @@ ${body}
       grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
       gap: 6rem !important;
       align-items: start;
-      padding-top: 3.8rem;
+      padding-top: 5rem;
       border-top: .1rem solid rgba(255, 255, 255, .12);
     }
 
@@ -200,8 +200,9 @@ ${body}
       color: #fff !important;
       font-family: Montserrat, sans-serif !important;
       font-size: 9px !important;
-      line-height: 1.8 !important;
+      line-height: 2 !important;
       letter-spacing: .08em !important;
+      text-transform: uppercase !important;
     }
 
     .cpi-footer__heading {
