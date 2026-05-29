@@ -164,9 +164,16 @@ function extractContactFragment(source) {
   return cleanHtml(fragment);
 }
 
+function openLinksInNewTab(html) {
+  return html.replace(/<a\b([^>]*)>/g, function(match, attrs) {
+    let nextAttrs = attrs.replace(/\s+target="[^"]*"/g, '').replace(/\s+rel="[^"]*"/g, '');
+    return '<a' + nextAttrs + ' target="_blank" rel="noopener">';
+  });
+}
+
 function layout({ title, description = '', canonicalPath, body, assetPrefix = '' }) {
   const url = canonicalPath === '/' ? 'https://centralparkinvestors.com/' : `https://centralparkinvestors.com${canonicalPath}`;
-  return `<!doctype html>
+  const html = `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -177,7 +184,7 @@ function layout({ title, description = '', canonicalPath, body, assetPrefix = ''
   <meta property="og:title" content="${title}">
   <meta property="og:url" content="${url}">
   <meta property="og:site_name" content="CENTRAL PARK INVESTORS">
-  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-page-weight-links">
+  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-page-links-new-tab">
 </head>
 <body class="${assetPrefix ? 'page-template' : 'home-template'}">
   <div id="shopify-section-sections--25978986266913__header" class="shopify-section shopify-section-group-header-group section-header">
@@ -323,6 +330,7 @@ ${body}
 </body>
 </html>
 `;
+  return assetPrefix ? openLinksInNewTab(html) : html;
 }
 
 function homepage() {
@@ -423,7 +431,7 @@ for (const page of pages) {
 
 writeFile(
   'pages/exhibit-e/index.html',
-  `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/pages/exhibith"><link rel="canonical" href="https://centralparkinvestors.com/pages/exhibith"><title>Redirecting - CENTRAL PARK INVESTORS</title></head><body><p><a href="/pages/exhibith">Continue to Exhibit H</a></p></body></html>\n`,
+  `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/pages/exhibith"><link rel="canonical" href="https://centralparkinvestors.com/pages/exhibith"><title>Redirecting - CENTRAL PARK INVESTORS</title></head><body><p><a href="/pages/exhibith" target="_blank" rel="noopener">Continue to Exhibit H</a></p></body></html>\n`,
 );
 
 console.log(`Built CPI static site from ${themeZip}`);
