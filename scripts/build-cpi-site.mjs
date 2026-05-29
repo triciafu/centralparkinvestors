@@ -198,6 +198,7 @@ function layout({ title, description = '', canonicalPath, body, assetPrefix = ''
   <meta property="og:title" content="${title}">
   <meta property="og:url" content="${url}">
   <meta property="og:site_name" content="CENTRAL PARK INVESTORS">
+  <link rel="icon" type="image/png" href="${assetPrefix}assets/favicon.png">
   <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-header-footer-same-tab">
 </head>
 <body class="${assetPrefix ? 'page-template' : 'home-template'}">
