@@ -426,7 +426,7 @@ sticky-header.header-wrapper,
 }
 
 .contact__inner {
-  max-width: 59rem;
+  max-width: 400px;
   margin: 0 auto;
   padding: 0;
   text-align: center;
@@ -471,7 +471,7 @@ sticky-header.header-wrapper,
   font-weight: 400;
   letter-spacing: .04em;
   line-height: 1.2;
-  padding: 1.8rem;
+  padding: .9rem 1.8rem;
   text-transform: uppercase;
 }
 
