@@ -170,10 +170,14 @@ function openLinksInNewTab(html) {
     protectedBlocks.push(block);
     return '%%CPI_PROTECTED_' + (protectedBlocks.length - 1) + '%%';
   });
+
   return protectedHtml
     .replace(/<a\b([^>]*)>/g, function(match, attrs) {
       let nextAttrs = attrs.replace(/\s+target="[^"]*"/g, '').replace(/\s+rel="[^"]*"/g, '');
-      return '<a' + nextAttrs + ' target="_blank" rel="noopener">';
+      const hrefMatch = nextAttrs.match(/\shref="([^"]*)"/);
+      const href = hrefMatch ? hrefMatch[1] : '';
+      const shouldOpenNewTab = /^https?:\/\//i.test(href);
+      return '<a' + nextAttrs + (shouldOpenNewTab ? ' target="_blank" rel="noopener"' : '') + '>';
     })
     .replace(/%%CPI_PROTECTED_(\d+)%%/g, function(_, index) {
       return protectedBlocks[Number(index)];
@@ -405,7 +409,7 @@ function homepage() {
             <h2 class="cpi-feature__title">Private Business</h2>
             <div class="cpi-feature__text">
               <p>Central Park Investors owns and operates a portfolio focused on manufacturing and supplies, supporting commercial and institutional customers across various categories.</p>
-              <p>While each company is managed independently, capital allocation and governance are coordinated centrally to ensure the most efficiencies.</p>
+              <p>While each company is managed independently, capital allocation and governance are coordinated centrally to support operational efficiency.</p>
               <p>Emphasis on enduring businesses with strong cash flow, resilient demand, and disciplined capital and risk management.</p>
             </div>
           </div>
@@ -440,7 +444,7 @@ for (const page of pages) {
 
 writeFile(
   'pages/exhibit-e/index.html',
-  `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/pages/exhibith"><link rel="canonical" href="https://centralparkinvestors.com/pages/exhibith"><title>Redirecting - CENTRAL PARK INVESTORS</title></head><body><p><a href="/pages/exhibith" target="_blank" rel="noopener">Continue to Exhibit H</a></p></body></html>\n`,
+  `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/pages/exhibith"><link rel="canonical" href="https://centralparkinvestors.com/pages/exhibith"><title>Redirecting - CENTRAL PARK INVESTORS</title></head><body><p><a href="/pages/exhibith">Continue to Exhibit H</a></p></body></html>\n`,
 );
 
 console.log(`Built CPI static site from ${themeZip}`);
