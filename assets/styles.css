@@ -151,11 +151,16 @@ sticky-header.header-wrapper,
 }
 
 .header__heading-link:hover,
-.header__heading-link:focus,
-.header__authorized-users:hover,
-.header__authorized-users:focus {
+.header__heading-link:focus {
   color: #fff !important;
   opacity: .85;
+  text-decoration: none;
+}
+
+.header__authorized-users:hover,
+.header__authorized-users:focus {
+  color: #9b9b9b !important;
+  opacity: 1;
   text-decoration: none;
 }
 
