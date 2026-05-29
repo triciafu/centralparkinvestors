@@ -433,11 +433,11 @@ sticky-header.header-wrapper,
   background: #fff;
   color: #000;
   min-height: 87rem;
-  padding: 15.2rem 0 17.6rem;
+  padding: 12.7rem 0 17.6rem;
 }
 
 .contact__inner {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 0;
   text-align: center;
