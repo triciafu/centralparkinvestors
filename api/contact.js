@@ -96,9 +96,9 @@ export default async function handler(request, response) {
     return finish(request, response, 500, { error: 'Contact form is not configured.' }, '/pages/contact/?error=config');
   }
 
-  const subject = 'Central Park Investors contact form';
+  const subject = 'New message';
   const text = [
-    'New Central Park Investors contact form submission',
+    'New submission from Central Park Investors contact form.',
     '',
     'Name: ' + name,
     'Email: ' + email,
@@ -106,7 +106,7 @@ export default async function handler(request, response) {
     comment,
   ].join('\n');
 
-  const html = '<p><strong>New Central Park Investors contact form submission</strong></p>'
+  const html = '<p><strong>New submission from Central Park Investors contact form.</strong></p>'
     + '<p><strong>Name:</strong> ' + escapeHtml(name) + '<br>'
     + '<strong>Email:</strong> ' + escapeHtml(email) + '</p>'
     + '<p>' + escapeHtml(comment).replaceAll('\n', '<br>') + '</p>';
