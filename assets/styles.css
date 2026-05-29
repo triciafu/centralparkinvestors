@@ -480,6 +480,13 @@ sticky-header.header-wrapper,
   text-align: center;
 }
 
+.contact__content {
+  width: 500px;
+  max-width: 100%;
+  margin: 0 auto 10px;
+  text-align: center;
+}
+
 .contact__content p {
   display: block;
   width: 100%;
