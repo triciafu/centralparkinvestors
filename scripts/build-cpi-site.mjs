@@ -137,9 +137,9 @@ function layout({ title, description = '', canonicalPath, body, assetPrefix = ''
   <meta property="og:title" content="${title}">
   <meta property="og:url" content="${url}">
   <meta property="og:site_name" content="CENTRAL PARK INVESTORS">
-  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-message-max-125">
+  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-pages-white">
 </head>
-<body>
+<body class="${assetPrefix ? 'page-template' : 'home-template'}">
   <div id="shopify-section-sections--25978986266913__header" class="shopify-section shopify-section-group-header-group section-header">
     <sticky-header data-sticky-type="on-scroll-up" class="header-wrapper color-scheme-1 gradient">
       <header class="header header--top-left header--mobile-center page-width">

@@ -18,6 +18,10 @@ body {
   line-height: 24px;
 }
 
+.page-template #main {
+  background: #fff;
+}
+
 a {
   color: #0645ad;
   font-weight: 500;
