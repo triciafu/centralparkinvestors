@@ -448,8 +448,9 @@ sticky-header.header-wrapper,
 }
 
 .contact__content {
-  max-width: 500px;
-  margin: 0 auto 36px;
+  width: 500px;
+  max-width: 100%;
+  margin: 0 auto 46px;
   text-align: center;
 }
 
