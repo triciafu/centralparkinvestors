@@ -165,18 +165,18 @@ function extractContactFragment(source) {
 }
 
 function openLinksInNewTab(html) {
-  const footerBlocks = [];
-  const protectedHtml = html.replace(/<footer class="cpi-footer"[\s\S]*?<\/footer>/g, function(footer) {
-    footerBlocks.push(footer);
-    return '%%CPI_FOOTER_' + (footerBlocks.length - 1) + '%%';
+  const protectedBlocks = [];
+  const protectedHtml = html.replace(/<header class="header[^"]*"[\s\S]*?<\/header>|<footer class="cpi-footer"[\s\S]*?<\/footer>/g, function(block) {
+    protectedBlocks.push(block);
+    return '%%CPI_PROTECTED_' + (protectedBlocks.length - 1) + '%%';
   });
   return protectedHtml
     .replace(/<a\b([^>]*)>/g, function(match, attrs) {
       let nextAttrs = attrs.replace(/\s+target="[^"]*"/g, '').replace(/\s+rel="[^"]*"/g, '');
       return '<a' + nextAttrs + ' target="_blank" rel="noopener">';
     })
-    .replace(/%%CPI_FOOTER_(\d+)%%/g, function(_, index) {
-      return footerBlocks[Number(index)];
+    .replace(/%%CPI_PROTECTED_(\d+)%%/g, function(_, index) {
+      return protectedBlocks[Number(index)];
     });
 }
 
@@ -193,7 +193,7 @@ function layout({ title, description = '', canonicalPath, body, assetPrefix = ''
   <meta property="og:title" content="${title}">
   <meta property="og:url" content="${url}">
   <meta property="og:site_name" content="CENTRAL PARK INVESTORS">
-  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-footer-same-tab">
+  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-header-footer-same-tab">
 </head>
 <body class="${assetPrefix ? 'page-template' : 'home-template'}">
   <div id="shopify-section-sections--25978986266913__header" class="shopify-section shopify-section-group-header-group section-header">
