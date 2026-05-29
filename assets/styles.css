@@ -444,6 +444,7 @@ sticky-header.header-wrapper,
 }
 
 .contact__content {
+  width: 100%;
   margin: 0 0 3.2rem;
 }
 
@@ -462,8 +463,10 @@ sticky-header.header-wrapper,
   font-weight: 400;
 }
 
+.contact__form,
 .contact__fields {
   display: block;
+  width: 100%;
 }
 
 .field {
