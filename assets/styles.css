@@ -157,8 +157,13 @@ sticky-header.header-wrapper,
   text-decoration: none;
 }
 
-.header__authorized-users:hover,
-.header__authorized-users:focus {
+.header .header__authorized-users:hover,
+.header .header__authorized-users:focus,
+.header .header__authorized-users:active,
+.header .header__authorized-users:hover .header__authorized-users-text,
+.header .header__authorized-users:focus .header__authorized-users-text,
+.header .header__authorized-users:hover .header__authorized-users-icon,
+.header .header__authorized-users:focus .header__authorized-users-icon {
   color: #9b9b9b !important;
   opacity: 1;
   text-decoration: none;
