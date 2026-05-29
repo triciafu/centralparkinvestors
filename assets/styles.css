@@ -457,11 +457,14 @@ sticky-header.header-wrapper,
 .contact__content p,
 .contact__content a,
 .contact__content span {
-  color: #000;
-  font-family: Montserrat, sans-serif;
+  color: #000 !important;
+  font-family: Montserrat, sans-serif !important;
   font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0;
   line-height: 24px !important;
   margin: 0;
+  text-align: center;
 }
 
 .contact__content p {
@@ -472,8 +475,14 @@ sticky-header.header-wrapper,
   margin-bottom: 0;
 }
 
-.contact__content a {
-  text-decoration: underline;
+.contact__content a,
+.contact__content a:visited,
+.contact__content a:hover,
+.contact__content a:focus {
+  color: #000 !important;
+  font-weight: 400 !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px;
   text-underline-offset: .25rem;
 }
 
