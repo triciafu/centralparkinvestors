@@ -417,6 +417,10 @@ sticky-header.header-wrapper,
   margin: 0 0 1.6rem;
 }
 
+.content-page .rte p {
+  margin: 12px 0 24px;
+}
+
 .rte,
 .rte p,
 .rte li,
@@ -431,6 +435,14 @@ sticky-header.header-wrapper,
   font-size: 13px !important;
   font-weight: 300;
   line-height: 24px !important;
+}
+
+.content-page .rte .cpi-emphasis-line {
+  font-weight: 500;
+}
+
+.content-page .rte .cpi-emphasis-line strong {
+  font-weight: 500;
 }
 
 .rte table {

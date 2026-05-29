@@ -112,10 +112,45 @@ function cleanHtml(html) {
     .replaceAll('rel="noopener"', '');
 }
 
+function textFromHtml(html) {
+  return html
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .trim();
+}
+
+function isEmphasisLine(text) {
+  const normalized = text.replace(/\s+/g, ' ').trim();
+  if (/^\d+[.)]?\s+/.test(normalized)) return true;
+  const letters = normalized.replace(/[^A-Za-z]/g, '');
+  return letters.length >= 3 && letters === letters.toUpperCase();
+}
+
+function addClassToTag(tag, className) {
+  if (/\bclass=/.test(tag)) {
+    return tag.replace(/class="([^"]*)"/, function(_, classes) {
+      return 'class="' + classes + ' ' + className + '"';
+    });
+  }
+  return tag.replace(/>$/, ' class="' + className + '">');
+}
+
+function markEmphasisLines(html) {
+  return html.replace(/<(p|li)([^>]*)>([\s\S]*?)<\/\1>/g, function(match, tagName, attrs, inner) {
+    if (/\bcpi-emphasis-line\b/.test(attrs)) return match;
+    return isEmphasisLine(textFromHtml(inner))
+      ? addClassToTag('<' + tagName + attrs + '>', 'cpi-emphasis-line') + inner + '</' + tagName + '>'
+      : match;
+  });
+}
+
 function extractPageFragment(source) {
   const match = source.match(/<div class="page-width page-width--narrow[\s\S]*?<\/section>/);
   if (!match) throw new Error('Could not extract page fragment');
-  return cleanHtml(match[0].replace(/\s*<\/section>\s*$/, ''));
+  return markEmphasisLines(cleanHtml(match[0].replace(/\s*<\/section>\s*$/, '')));
 }
 
 function extractContactFragment(source) {
@@ -142,7 +177,7 @@ function layout({ title, description = '', canonicalPath, body, assetPrefix = ''
   <meta property="og:title" content="${title}">
   <meta property="og:url" content="${url}">
   <meta property="og:site_name" content="CENTRAL PARK INVESTORS">
-  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-auth-input-button-padding">
+  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-page-copy-weight">
 </head>
 <body class="${assetPrefix ? 'page-template' : 'home-template'}">
   <div id="shopify-section-sections--25978986266913__header" class="shopify-section shopify-section-group-header-group section-header">
