@@ -277,6 +277,12 @@ sticky-header.header-wrapper,
 }
 
 .cpi-intro__button:hover,
+.cpi-intro__button:focus {
+  color: #333 !important;
+  opacity: .5;
+  text-decoration: none;
+}
+
 .cpi-code-gate__button:hover,
 .button:hover {
   opacity: .5;
