@@ -70,7 +70,7 @@ export default async function handler(request, response) {
     return response.status(400).json({ error: 'Invalid form submission.' });
   }
 
-  const redirectUrl = field(body, 'redirect') || '/pages/contact/?sent=1';
+  const redirectUrl = field(body, 'redirect') || '/pages/contact/?sent=1#ContactForm-message';
 
   if (field(body, 'bot-field')) {
     return finish(request, response, 200, { message: 'Thank you. Your message has been sent.' }, redirectUrl);

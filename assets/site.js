@@ -24,6 +24,12 @@ function ensureContactMessage() {
   return message;
 }
 
+function showContactSuccess(message) {
+  const form = document.getElementById('ContactForm');
+  if (form) form.dataset.submitted = 'true';
+  setFormMessage(message, 'Thank you. Your message has been sent.', 'success');
+}
+
 function showContactQueryMessage() {
   const params = new URLSearchParams(window.location.search);
   if (!params.has('sent') && !params.has('error')) return;
@@ -32,7 +38,7 @@ function showContactQueryMessage() {
   if (!message) return;
 
   if (params.has('sent')) {
-    setFormMessage(message, 'Thank you. Your message has been sent.', 'success');
+    showContactSuccess(message);
     return;
   }
 
@@ -125,7 +131,7 @@ document.addEventListener('submit', async (event) => {
 
       if (response.ok) {
         form.reset();
-        setFormMessage(message, result.message || 'Thank you. Your message has been sent.', 'success');
+        showContactSuccess(message);
         return;
       }
 

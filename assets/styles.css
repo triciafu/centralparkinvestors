@@ -682,6 +682,20 @@ sticky-header.header-wrapper,
   color: #2f6544;
 }
 
+#ContactForm[data-submitted="true"] .contact__fields,
+#ContactForm[data-submitted="true"] .field,
+#ContactForm[data-submitted="true"] .button {
+  display: none;
+}
+
+#ContactForm[data-submitted="true"] .contact__button {
+  margin-top: 0;
+}
+
+#ContactForm[data-submitted="true"] .contact__message {
+  margin-top: 0;
+}
+
 .visually-hidden {
   position: absolute !important;
   width: 1px;
