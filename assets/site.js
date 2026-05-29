@@ -13,7 +13,12 @@ function ensureContactMessage() {
     message = document.createElement('div');
     message.id = 'ContactForm-message';
     message.className = 'contact__message';
-    form.appendChild(message);
+    const buttonWrap = form.querySelector('.contact__button');
+    if (buttonWrap) {
+      buttonWrap.appendChild(message);
+    } else {
+      form.appendChild(message);
+    }
   }
 
   return message;

@@ -161,7 +161,7 @@ function extractContactFragment(source) {
     .replace(/<form method="post" action="https:\/\/centralparkinvestors\.com\/contact#ContactForm"[^>]*>/, '<form name="contact" method="post" action="/api/contact" id="ContactForm" class="contact__form isolate">')
     .replace('<input type="hidden" name="form_type" value="contact">', '<input type="hidden" name="form-name" value="contact"><input type="hidden" name="redirect" value="/pages/contact/?sent=1"><p class="visually-hidden"><label>Do not fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>')
     .replace('<input type="hidden" name="utf8" value="✓">', '');
-  fragment = fragment.replace('</button>\n      </div></form>', '</button>\n      </div><div id="ContactForm-message" class="contact__message" aria-live="polite"></div></form>');
+  fragment = fragment.replace('</button>\n      </div></form>', '</button>\n        <div id="ContactForm-message" class="contact__message" aria-live="polite"></div>\n      </div></form>');
   return cleanHtml(fragment);
 }
 
