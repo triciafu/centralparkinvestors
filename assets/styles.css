@@ -447,10 +447,16 @@ sticky-header.header-wrapper,
   text-align: center;
 }
 
-.contact__content {
+.contact__content,
+.contact__form {
   width: 500px;
   max-width: 100%;
-  margin: 0 auto 46px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact__content {
+  margin-bottom: 46px;
   text-align: center;
 }
 
@@ -495,8 +501,6 @@ sticky-header.header-wrapper,
 
 .contact__form {
   display: block;
-  max-width: 500px;
-  margin: 0 auto;
 }
 
 .contact__fields {
