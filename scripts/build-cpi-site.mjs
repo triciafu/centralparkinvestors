@@ -106,7 +106,8 @@ function cleanHtml(html) {
     .replaceAll('padding: 80px 24px;', 'padding: 50px 24px;')
     .replaceAll('flex-wrap: wrap;\n  }\n\n  #cpi-access-code,', 'flex-wrap: wrap;\n    align-items: flex-end;\n  }\n\n  #cpi-access-code,')
     .replaceAll('width: 260px;', 'width: 320px;')
-    .replaceAll('padding: 12px 14px;', 'padding: 20px 18px;')
+    .replaceAll('padding: 12px 14px;', 'padding: 12px 18px;')
+    .replaceAll('padding: 12px 20px;', 'padding: 19px 20px;')
     .replaceAll('target="_blank"', '')
     .replaceAll('rel="noopener"', '');
 }
@@ -141,7 +142,7 @@ function layout({ title, description = '', canonicalPath, body, assetPrefix = ''
   <meta property="og:title" content="${title}">
   <meta property="og:url" content="${url}">
   <meta property="og:site_name" content="CENTRAL PARK INVESTORS">
-  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-code-input-size">
+  <link rel="stylesheet" href="${assetPrefix}assets/styles.css?v=20260529-auth-input-button-padding">
 </head>
 <body class="${assetPrefix ? 'page-template' : 'home-template'}">
   <div id="shopify-section-sections--25978986266913__header" class="shopify-section shopify-section-group-header-group section-header">

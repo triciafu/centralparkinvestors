@@ -287,6 +287,10 @@ sticky-header.header-wrapper,
   text-decoration: none;
 }
 
+.cpi-code-gate__button {
+  padding: 19px 20px;
+}
+
 .cpi-code-gate__button:hover,
 .button:hover {
   opacity: .5;
@@ -667,7 +671,7 @@ sticky-header.header-wrapper,
 #cpi-access-code,
 .cpi-code-gate__input {
   width: 32rem;
-  padding: 2rem 1.8rem;
+  padding: 12px 18px;
   border: 1px solid #b5b5b5;
   font: inherit;
   font-size: 1.2rem;
