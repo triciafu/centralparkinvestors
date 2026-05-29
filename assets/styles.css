@@ -185,12 +185,14 @@ sticky-header.header-wrapper,
 
 .hero-video {
   background: #111;
-  min-height: 50vw;
+  height: 500px;
+  overflow: hidden;
 }
 
 .hero-video video {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .cpi-intro {
