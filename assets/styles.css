@@ -382,7 +382,11 @@ sticky-header.header-wrapper,
 
 .authorized-users-page {
   min-height: auto;
-  padding-bottom: 0;
+  padding-bottom: 50px;
+}
+
+.authorized-users-page .main-page-title {
+  margin-bottom: 25px;
 }
 
 .page-width {

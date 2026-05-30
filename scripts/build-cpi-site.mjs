@@ -438,7 +438,7 @@ for (const page of pages) {
   const source = readSource(page.source);
   let fragment = page.type === 'contact' ? extractContactFragment(source) : extractPageFragment(source);
   if (page.url === '/pages/authorized-users') {
-    fragment = fragment.replace('padding: 50px 24px;\n    text-align: center;', 'padding: 0 24px 50px;\n    text-align: center;');
+    fragment = fragment.replace('padding: 50px 24px;\n    text-align: center;', 'padding: 0 24px;\n    text-align: center;');
   }
   if (page.url === '/pages/exhibith') {
     fragment = fragment.replaceAll('California Closets - Exhibit E', 'California Closets - Exhibit H');
