@@ -11,7 +11,7 @@ const pages = [
     source: 'Private Access – CENTRAL PARK INVESTORS.html',
     output: 'pages/authorized-users/index.html',
     url: '/pages/authorized-users',
-    title: 'Private Access',
+    title: 'Authorized Users',
     type: 'page',
   },
   {
