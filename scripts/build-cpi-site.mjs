@@ -201,6 +201,26 @@ function addBreadcrumbToFragment(fragment, parentPath, parentLabel, currentLabel
   return fragment.replace(/<nav class="cpi-breadcrumb"[\s\S]*?<\/nav>\n?/, '').replace(/(<div class="page-width page-width--narrow section-template--25978985873697__main-padding">\n)/, '$1  ' + breadcrumbHtml(parentPath, parentLabel, currentLabel) + '\n');
 }
 
+function boldRecordRefs(html) {
+  return html
+    .replace(/<a\b([^>]*)>(Record Ref[^<]*)<\/a>/g, function(match, attrs, text) {
+      return addBoldStyleToTag('<a' + attrs + '>') + text + '</a>';
+    })
+    .replace(/<span\b([^>]*)>(Record Ref[^<]*)<\/span>/g, function(match, attrs, text) {
+      return addBoldStyleToTag('<span' + attrs + '>') + text + '</span>';
+    });
+}
+
+function addBoldStyleToTag(tag) {
+  if (!/style="/.test(tag)) return tag.replace(/>$/, ' style="font-weight: 700;">');
+  return tag.replace(/style="([^"]*)"/, function(_, style) {
+    if (/font-weight\s*:/.test(style)) return 'style="' + style + '"';
+    const trimmed = style.trim();
+    const sep = trimmed && !trimmed.endsWith(';') ? ';' : '';
+    return 'style="' + trimmed + sep + ' font-weight: 700;"';
+  });
+}
+
 function layout({ title, description = '', canonicalPath, body, assetPrefix = '' }) {
   const url = canonicalPath === '/' ? 'https://centralparkinvestors.com/' : `https://centralparkinvestors.com${canonicalPath}`;
   const html = `<!doctype html>
@@ -521,7 +541,7 @@ function one11ExhibitAPage() {
     "Current status of the matter."
   ]
 ];
-  const recordRef = (id) => '<br><span style="font-size: 10px;"><span style="font-size: 10px; color: #0645ad; text-decoration: none;">Record Ref. ' + id + '</span></span>';
+  const recordRef = (id) => '<br><span style="font-size: 10px;"><span style="font-size: 10px; color: #0645ad; text-decoration: none; font-weight: 700;">Record Ref. ' + id + '</span></span>';
   const rowHtml = rows.map(([date, event, ref, significance]) => `<tr>
 <td style="padding: 18px 20px 18px 0px; border-bottom: 1px solid rgb(238, 238, 238); vertical-align: top; white-space: nowrap;">${date}</td>
 <td style="padding: 18px 20px 18px 0px; border-bottom: 1px solid rgb(238, 238, 238); vertical-align: top;">${event}${recordRef(ref)}</td>
@@ -577,6 +597,7 @@ writeFile('index.html', homepage());
 for (const page of pages) {
   const source = readSource(page.source);
   let fragment = page.type === 'contact' ? extractContactFragment(source) : extractPageFragment(source);
+  fragment = boldRecordRefs(fragment);
   if (page.url === '/pages/authorized-users') {
     fragment = fragment.replace('padding: 50px 24px;\n    text-align: center;', 'padding: 0 24px 100px;\n    text-align: center;');
   }
