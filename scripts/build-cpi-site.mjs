@@ -198,7 +198,7 @@ function breadcrumbHtml(parentPath, parentLabel, currentLabel) {
 }
 
 function addBreadcrumbToFragment(fragment, parentPath, parentLabel, currentLabel) {
-  return fragment.replace(/(<div class="page-width page-width--narrow section-template--25978985873697__main-padding">\n)/, '$1  ' + breadcrumbHtml(parentPath, parentLabel, currentLabel) + '\n');
+  return fragment.replace(/<nav class="cpi-breadcrumb"[\s\S]*?<\/nav>\n?/, '').replace(/(<div class="page-width page-width--narrow section-template--25978985873697__main-padding">\n)/, '$1  ' + breadcrumbHtml(parentPath, parentLabel, currentLabel) + '\n');
 }
 
 function layout({ title, description = '', canonicalPath, body, assetPrefix = '' }) {
@@ -440,6 +440,7 @@ function homepage() {
 function one11ExecutiveSummaryPage() {
   const body = `    <section class="content-page">
       <div class="page-width page-width--narrow section-template--25978985873697__main-padding">
+  ${breadcrumbHtml('/', 'Home', 'One11 Residences: Injury Claim')}
   <h1 class="main-page-title page-title h0 scroll-trigger animate--fade-in">
     One11 Residences: Injury Claim
   </h1>
@@ -581,6 +582,7 @@ for (const page of pages) {
     fragment = fragment.replace('padding: 50px 24px;\n    text-align: center;', 'padding: 0 24px 100px;\n    text-align: center;');
   }
   if (page.url === '/pages/cc01') {
+    fragment = addBreadcrumbToFragment(fragment, '/', 'Home', 'California Closets: Commercial Dispute');
     fragment = fragment
       .replace(/<a\s+href="\/pages\/cc01\/(exhibita|exhibitb|exhibitc|exhibitd|exhibith)"\s*>/g, '<a href="/pages/cc01/$1" target="_blank" rel="noopener">')
       .replace(/<a\s+href="\/pages\/authorized-users"\s*>/g, '<a href="/pages/authorized-users" target="_blank" rel="noopener">');
