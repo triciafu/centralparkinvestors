@@ -23,36 +23,36 @@ const pages = [
   },
   {
     source: 'California Closets - Exhibit A – CENTRAL PARK INVESTORS.html',
-    output: 'pages/cc01-exhibita/index.html',
-    url: '/pages/cc01-exhibita',
+    output: 'pages/cc01/exhibita/index.html',
+    url: '/pages/cc01/exhibita',
     title: 'California Closets - Exhibit A',
     type: 'page',
   },
   {
     source: 'California Closets - Exhibit B – CENTRAL PARK INVESTORS.html',
-    output: 'pages/cc01-exhibitb/index.html',
-    url: '/pages/cc01-exhibitb',
+    output: 'pages/cc01/exhibitb/index.html',
+    url: '/pages/cc01/exhibitb',
     title: 'California Closets - Exhibit B',
     type: 'page',
   },
   {
     source: 'California Closets - Exhibit C – CENTRAL PARK INVESTORS.html',
-    output: 'pages/cc01-exhibitc/index.html',
-    url: '/pages/cc01-exhibitc',
+    output: 'pages/cc01/exhibitc/index.html',
+    url: '/pages/cc01/exhibitc',
     title: 'California Closets - Exhibit C',
     type: 'page',
   },
   {
     source: 'California Closets - Exhibit D – CENTRAL PARK INVESTORS.html',
-    output: 'pages/cc01-exhibitd/index.html',
-    url: '/pages/cc01-exhibitd',
+    output: 'pages/cc01/exhibitd/index.html',
+    url: '/pages/cc01/exhibitd',
     title: 'California Closets - Exhibit D',
     type: 'page',
   },
   {
     source: 'California Closets - Exhibit E – CENTRAL PARK INVESTORS.html',
-    output: 'pages/exhibith/index.html',
-    url: '/pages/exhibith',
+    output: 'pages/cc01/exhibith/index.html',
+    url: '/pages/cc01/exhibith',
     title: 'California Closets - Exhibit H',
     type: 'page',
   },
@@ -91,13 +91,18 @@ function writeFile(file, content) {
 function cleanHtml(html) {
   return html
     .replace(/<script>\s*document\.getElementById\('cpi-code-gate-form'\)[\s\S]*?<\/script>/, '')
-    .replaceAll('https://centralparkinvestors.com/pages/exhibit-e', '/pages/exhibith')
-    .replaceAll('https://centralparkinvestors.com/pages/exhibith', '/pages/exhibith')
+    .replaceAll('https://centralparkinvestors.com/pages/exhibit-e', '/pages/cc01/exhibith')
+    .replaceAll('https://centralparkinvestors.com/pages/exhibith', '/pages/cc01/exhibith')
+    .replaceAll('/pages/exhibith', '/pages/cc01/exhibith')
     .replaceAll('https://centralparkinvestors.com/pages/authorized-users', '/pages/authorized-users')
-    .replaceAll('https://centralparkinvestors.com/pages/cc01-exhibita', '/pages/cc01-exhibita')
-    .replaceAll('https://centralparkinvestors.com/pages/cc01-exhibitb', '/pages/cc01-exhibitb')
-    .replaceAll('https://centralparkinvestors.com/pages/cc01-exhibitc', '/pages/cc01-exhibitc')
-    .replaceAll('https://centralparkinvestors.com/pages/cc01-exhibitd', '/pages/cc01-exhibitd')
+    .replaceAll('https://centralparkinvestors.com/pages/cc01-exhibita', '/pages/cc01/exhibita')
+    .replaceAll('https://centralparkinvestors.com/pages/cc01-exhibitb', '/pages/cc01/exhibitb')
+    .replaceAll('https://centralparkinvestors.com/pages/cc01-exhibitc', '/pages/cc01/exhibitc')
+    .replaceAll('https://centralparkinvestors.com/pages/cc01-exhibitd', '/pages/cc01/exhibitd')
+    .replaceAll('/pages/cc01-exhibita', '/pages/cc01/exhibita')
+    .replaceAll('/pages/cc01-exhibitb', '/pages/cc01/exhibitb')
+    .replaceAll('/pages/cc01-exhibitc', '/pages/cc01/exhibitc')
+    .replaceAll('/pages/cc01-exhibitd', '/pages/cc01/exhibitd')
     .replaceAll('https://centralparkinvestors.com/pages/cc01', '/pages/cc01')
     .replaceAll('https://centralparkinvestors.com/pages/contact', '/pages/contact')
     .replaceAll('https://centralparkinvestors.com/pages/privacy-policy', '/pages/privacy-policy')
@@ -177,12 +182,23 @@ function openLinksInNewTab(html) {
       let nextAttrs = attrs.replace(/\s+target="[^"]*"/g, '').replace(/\s+rel="[^"]*"/g, '');
       const hrefMatch = nextAttrs.match(/\shref="([^"]*)"/);
       const href = hrefMatch ? hrefMatch[1] : '';
-      const shouldOpenNewTab = /^https?:\/\//i.test(href);
+      const shouldOpenNewTab = /^https?:\/\//i.test(href)
+        || /^\/pages\/cc01\/exhibit/.test(href)
+        || href === '/pages/o1101/exhibita'
+        || href === '/pages/authorized-users';
       return '<a' + nextAttrs + (shouldOpenNewTab ? ' target="_blank" rel="noopener"' : '') + '>';
     })
     .replace(/%%CPI_PROTECTED_(\d+)%%/g, function(_, index) {
       return protectedBlocks[Number(index)];
     });
+}
+
+function breadcrumbHtml(parentPath, parentLabel, currentLabel) {
+  return '<nav class="cpi-breadcrumb" aria-label="Breadcrumb" style="max-width: 800px; margin: 0 auto 34px; font-family: Montserrat, sans-serif; font-size: 10px; line-height: 1.8; letter-spacing: .08em; text-transform: uppercase;"><a href="' + parentPath + '" style="color: #000; text-decoration: none;">' + parentLabel + '</a><span style="display: inline-block; margin: 0 8px; color: #777;">/</span><span style="color: #777;">' + currentLabel + '</span></nav>';
+}
+
+function addBreadcrumbToFragment(fragment, parentPath, parentLabel, currentLabel) {
+  return fragment.replace(/(<div class="page-width page-width--narrow section-template--25978985873697__main-padding">\n)/, '$1  ' + breadcrumbHtml(parentPath, parentLabel, currentLabel) + '\n');
 }
 
 function layout({ title, description = '', canonicalPath, body, assetPrefix = '' }) {
@@ -510,9 +526,9 @@ function one11ExhibitAPage() {
 <td style="padding: 18px 20px 18px 0px; border-bottom: 1px solid rgb(238, 238, 238); vertical-align: top;">${event}${recordRef(ref)}</td>
 <td style="padding: 18px 0px; border-bottom: 1px solid rgb(238, 238, 238); vertical-align: top;">${significance}</td>
 </tr>`).join('\n');
-  const refsHtml = refs.map(([id, label]) => '<p><strong>' + id + '</strong> – ' + label + '</p>').join('\n');
   const body = `    <section class="content-page">
       <div class="page-width page-width--narrow section-template--25978985873697__main-padding">
+  ${breadcrumbHtml('/pages/o1101', 'One11 Residences: Injury Claim', 'Exhibit A')}
   <h1 class="main-page-title page-title h0 scroll-trigger animate--fade-in">
     One11 Residences - Exhibit A
   </h1>
@@ -564,21 +580,34 @@ for (const page of pages) {
   if (page.url === '/pages/authorized-users') {
     fragment = fragment.replace('padding: 50px 24px;\n    text-align: center;', 'padding: 0 24px 100px;\n    text-align: center;');
   }
-  if (page.url === '/pages/exhibith') {
+  if (page.url === '/pages/cc01') {
+    fragment = fragment
+      .replace(/<a\s+href="\/pages\/cc01\/(exhibita|exhibitb|exhibitc|exhibitd|exhibith)"\s*>/g, '<a href="/pages/cc01/$1" target="_blank" rel="noopener">')
+      .replace(/<a\s+href="\/pages\/authorized-users"\s*>/g, '<a href="/pages/authorized-users" target="_blank" rel="noopener">');
+  }
+  if (page.url === '/pages/cc01/exhibith') {
     fragment = fragment.replaceAll('California Closets - Exhibit E', 'California Closets - Exhibit H');
+  }
+  if (page.url.startsWith('/pages/cc01/exhibit')) {
+    fragment = addBreadcrumbToFragment(fragment, '/pages/cc01', 'California Closets: Commercial Dispute', page.title.replace('California Closets - ', ''));
   }
   const sectionClass = page.type === 'contact' ? 'contact-page' : page.url === '/pages/authorized-users' ? 'content-page authorized-users-page' : 'content-page';
   const body = `    <section class="${sectionClass}">\n      ${fragment}\n    </section>`;
-  writeFile(page.output, layout({ title: page.title, canonicalPath: page.url, body, assetPrefix: '../../' }));
+  writeFile(page.output, layout({ title: page.title, canonicalPath: page.url, body, assetPrefix: page.url.startsWith('/pages/cc01/exhibit') ? '../../../' : '../../' }));
 }
 
 writeFile('pages/o1101/index.html', one11ExecutiveSummaryPage());
 writeFile('pages/o1101/exhibita/index.html', one11ExhibitAPage());
+writeFile('pages/cc01-exhibita/index.html', '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/pages/cc01/exhibita"><link rel="canonical" href="https://centralparkinvestors.com/pages/cc01/exhibita"><title>Redirecting - CENTRAL PARK INVESTORS</title></head><body><p><a href="/pages/cc01/exhibita">Continue to Exhibit A</a></p></body></html>\n');
+writeFile('pages/cc01-exhibitb/index.html', '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/pages/cc01/exhibitb"><link rel="canonical" href="https://centralparkinvestors.com/pages/cc01/exhibitb"><title>Redirecting - CENTRAL PARK INVESTORS</title></head><body><p><a href="/pages/cc01/exhibitb">Continue to Exhibit B</a></p></body></html>\n');
+writeFile('pages/cc01-exhibitc/index.html', '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/pages/cc01/exhibitc"><link rel="canonical" href="https://centralparkinvestors.com/pages/cc01/exhibitc"><title>Redirecting - CENTRAL PARK INVESTORS</title></head><body><p><a href="/pages/cc01/exhibitc">Continue to Exhibit C</a></p></body></html>\n');
+writeFile('pages/cc01-exhibitd/index.html', '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/pages/cc01/exhibitd"><link rel="canonical" href="https://centralparkinvestors.com/pages/cc01/exhibitd"><title>Redirecting - CENTRAL PARK INVESTORS</title></head><body><p><a href="/pages/cc01/exhibitd">Continue to Exhibit D</a></p></body></html>\n');
+writeFile('pages/exhibith/index.html', '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/pages/cc01/exhibith"><link rel="canonical" href="https://centralparkinvestors.com/pages/cc01/exhibith"><title>Redirecting - CENTRAL PARK INVESTORS</title></head><body><p><a href="/pages/cc01/exhibith">Continue to Exhibit H</a></p></body></html>\n');
 writeFile('pages/o1101-exhibita/index.html', '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/pages/o1101/exhibita"><link rel="canonical" href="https://centralparkinvestors.com/pages/o1101/exhibita"><title>Redirecting - CENTRAL PARK INVESTORS</title></head><body><p><a href="/pages/o1101/exhibita">Continue to Exhibit A</a></p></body></html>\n');
 
 writeFile(
   'pages/exhibit-e/index.html',
-  `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/pages/exhibith"><link rel="canonical" href="https://centralparkinvestors.com/pages/exhibith"><title>Redirecting - CENTRAL PARK INVESTORS</title></head><body><p><a href="/pages/exhibith">Continue to Exhibit H</a></p></body></html>\n`,
+  `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/pages/cc01/exhibith"><link rel="canonical" href="https://centralparkinvestors.com/pages/cc01/exhibith"><title>Redirecting - CENTRAL PARK INVESTORS</title></head><body><p><a href="/pages/cc01/exhibith">Continue to Exhibit H</a></p></body></html>\n`,
 );
 
 console.log(`Built CPI static site from ${themeZip}`);
