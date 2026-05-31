@@ -477,67 +477,67 @@ function one11ExhibitAPage() {
   [
     "Sep. 9, 2025",
     "BuildingLink maintenance request submitted reporting medicine cabinet instability, hinge failure, and inability to close properly.",
-    "A-1",
+    "A1",
     "Earliest documented notice regarding the condition of the medicine cabinet."
   ],
   [
     "Sep. 17, 2025",
     "Written notice provided to representatives of the Sponsor, GFI Development Company, LLC, management personnel, brokerage representatives, and counsel regarding ongoing medicine cabinet defects, including concerns that the cabinet appeared too heavy for its hinges and may require replacement or outside assistance.",
-    "A-2",
+    "A2",
     "Escalated written notice identifying ongoing operational and safety concerns before the incident occurred."
   ],
   [
     "Sep. 26, 2025",
     "Follow-up communication transmitted by the owner’s real estate representative, Clifford Marks, requesting immediate attention to the reported defects after no substantive response had been received.",
-    "A-3",
+    "A3",
     "Demonstrates that concerns remained unresolved despite prior notice."
   ],
   [
     "Sep. 29, 2025",
     "The reported condition was acknowledged and maintenance personnel were directed to inspect the medicine cabinet.",
-    "A-4",
+    "A4",
     "Reflects awareness of the reported condition immediately before the incident."
   ],
   [
     "Sep. 30, 2025",
     "A mounted architectural panel associated with the medicine cabinet assembly detached from its mounted position and struck the owner in the head.",
-    "A-5",
+    "A5",
     "Incident giving rise to the claim."
   ],
   [
     "Sep. 30, 2025",
     "Emergency medical treatment obtained following the incident. Medical providers diagnosed a concussion and provided discharge instructions concerning monitoring and neurological symptoms.",
-    "A-6",
+    "A6",
     "Initial documented medical treatment resulting from the incident."
   ],
   [
     "Sep. 30, 2025",
     "The incident was reported to front desk and concierge personnel upon the owner’s return from the emergency department.",
-    "A-7",
+    "A7",
     "Establishes prompt reporting following the incident."
   ],
   [
     "Oct. 2, 2025",
     "Worsening symptoms including dizziness, lightheadedness, headache, and blurred vision required ambulance transportation and a second emergency medical evaluation. The treating physician documented a head injury occurring approximately two days earlier, noted a history of Postural Orthostatic Tachycardia Syndrome (POTS), and assessed the presentation as likely mild concussion syndrome.",
-    "A-8",
+    "A8",
     "Documents worsening symptoms requiring ambulance transport and a second emergency evaluation following the head injury."
   ],
   [
     "Oct. 3, 2025",
     "Management became aware of the incident following direct communications from the owner to the property manager and broader management team.",
-    "A-9",
+    "A9",
     "Reflects delay between initial reporting and management notification."
   ],
   [
     "Feb. 2026",
     "Parker57 LLC provided a proposed Settlement and Release Agreement. The proposed agreement identified Parker57 LLC, GFI Development Company, LLC, and a broad range of affiliated entities, investors, consultants, insurers, attorneys, and related parties as released parties.",
-    "A-10",
+    "A10",
     "Formal resolution discussions commenced and release terms were proposed."
   ],
   [
     "Present",
     "The matter remains unresolved. No settlement has been reached and no release has been executed.",
-    "A-11",
+    "A11",
     "Current status of the matter."
   ]
 ];
