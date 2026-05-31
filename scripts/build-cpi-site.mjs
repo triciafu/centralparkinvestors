@@ -486,7 +486,7 @@ function one11ExhibitAPage() {
     "Documents continuation and escalation of symptoms following the initial injury."
   ],
   [
-    "Approx. Oct. 3, 2025",
+    "Oct. 3, 2025",
     "Management became aware of the incident following direct communications from the owner to the property manager and broader management team.",
     "A-9",
     "Reflects delay between initial reporting and management notification."
