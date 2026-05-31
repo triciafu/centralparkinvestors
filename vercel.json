@@ -2,8 +2,38 @@
   "trailingSlash": true,
   "redirects": [
     {
+      "source": "/pages/o1101-exhibita",
+      "destination": "/pages/o1101/exhibita",
+      "permanent": true
+    },
+    {
+      "source": "/pages/cc01-exhibita",
+      "destination": "/pages/cc01/exhibita",
+      "permanent": true
+    },
+    {
+      "source": "/pages/cc01-exhibitb",
+      "destination": "/pages/cc01/exhibitb",
+      "permanent": true
+    },
+    {
+      "source": "/pages/cc01-exhibitc",
+      "destination": "/pages/cc01/exhibitc",
+      "permanent": true
+    },
+    {
+      "source": "/pages/cc01-exhibitd",
+      "destination": "/pages/cc01/exhibitd",
+      "permanent": true
+    },
+    {
+      "source": "/pages/exhibith",
+      "destination": "/pages/cc01/exhibith",
+      "permanent": true
+    },
+    {
       "source": "/pages/exhibit-e",
-      "destination": "/pages/exhibith",
+      "destination": "/pages/cc01/exhibith",
       "permanent": true
     }
   ],
