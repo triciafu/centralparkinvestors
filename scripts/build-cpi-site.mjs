@@ -504,52 +504,6 @@ function one11ExhibitAPage() {
     "Current status of the matter."
   ]
 ];
-  const refs = [
-  [
-    "A-1",
-    "BuildingLink Maintenance Request dated September 9, 2025"
-  ],
-  [
-    "A-2",
-    "Email Correspondence dated September 17, 2025"
-  ],
-  [
-    "A-3",
-    "Follow-Up Correspondence from Clifford Marks dated September 26, 2025"
-  ],
-  [
-    "A-4",
-    "Sponsor / Management Communication dated September 29, 2025"
-  ],
-  [
-    "A-5",
-    "Incident Photographs"
-  ],
-  [
-    "A-6",
-    "September 30, 2025 Emergency Department Records"
-  ],
-  [
-    "A-7",
-    "Incident Reporting Communications"
-  ],
-  [
-    "A-8",
-    "Ambulance Records and October 2, 2025 Emergency Department Records"
-  ],
-  [
-    "A-9",
-    "Property Management Correspondence and Related Communications"
-  ],
-  [
-    "A-10",
-    "Proposed Settlement and Release Agreement and Related Communications"
-  ],
-  [
-    "A-11",
-    "Current Status"
-  ]
-];
   const recordRef = (id) => '<br><span style="font-size: 10px;"><span style="font-size: 10px; color: #0645ad; text-decoration: none;">Record Ref. ' + id + '</span></span>';
   const rowHtml = rows.map(([date, event, ref, significance]) => `<tr>
 <td style="padding: 18px 20px 18px 0px; border-bottom: 1px solid rgb(238, 238, 238); vertical-align: top; white-space: nowrap;">${date}</td>
@@ -584,10 +538,6 @@ ${rowHtml}
 </tbody>
 </table>
 </div>
-</div>
-<div style="max-width: 800px; margin: 60px auto 0; padding: 0px;">
-<p class="cpi-emphasis-line"><strong>RECORD REFERENCES</strong></p>
-${refsHtml}
 </div>
   </div>
 </div>
