@@ -474,78 +474,163 @@ function one11ExecutiveSummaryPage() {
 
 function one11ExhibitAPage() {
   const rows = [
-  [
-    "Sep. 9, 2025",
-    "BuildingLink maintenance request submitted reporting medicine cabinet instability, hinge failure, and inability to close properly.",
-    "A1",
-    "Earliest documented notice regarding the condition of the medicine cabinet."
-  ],
-  [
-    "Sep. 17, 2025",
-    "Written notice provided to representatives of the Sponsor, GFI Development Company, LLC, management personnel, brokerage representatives, and counsel regarding ongoing medicine cabinet defects, including concerns that the cabinet appeared too heavy for its hinges and may require replacement or outside assistance.",
-    "A2",
-    "Escalated written notice identifying ongoing operational and safety concerns before the incident occurred."
-  ],
-  [
-    "Sep. 26, 2025",
-    "Follow-up communication transmitted by the owner’s real estate representative, Clifford Marks, requesting immediate attention to the reported defects after no substantive response had been received.",
-    "A3",
-    "Demonstrates that concerns remained unresolved despite prior notice."
-  ],
-  [
-    "Sep. 29, 2025",
-    "The reported condition was acknowledged and maintenance personnel were directed to inspect the medicine cabinet.",
-    "A4",
-    "Reflects awareness of the reported condition immediately before the incident."
-  ],
-  [
-    "Sep. 30, 2025",
-    "A mounted architectural panel associated with the medicine cabinet assembly detached from its mounted position and struck the owner in the head.",
-    "A5",
-    "Incident giving rise to the claim."
-  ],
-  [
-    "Sep. 30, 2025",
-    "Emergency medical treatment obtained following the incident. Medical providers diagnosed a concussion and provided discharge instructions concerning monitoring and neurological symptoms.",
-    "A6",
-    "Initial documented medical treatment resulting from the incident."
-  ],
-  [
-    "Sep. 30, 2025",
-    "The incident was reported to front desk and concierge personnel upon the owner’s return from the emergency department.",
-    "A7",
-    "Establishes prompt reporting following the incident."
-  ],
-  [
-    "Oct. 2, 2025",
-    "Worsening symptoms including dizziness, lightheadedness, headache, and blurred vision required ambulance transportation and a second emergency medical evaluation. The treating physician documented a head injury occurring approximately two days earlier, noted a history of Postural Orthostatic Tachycardia Syndrome (POTS), and assessed the presentation as likely mild concussion syndrome.",
-    "A8",
-    "Documents worsening symptoms requiring ambulance transport and a second emergency evaluation following the head injury."
-  ],
-  [
-    "Oct. 3, 2025",
-    "Management became aware of the incident following direct communications from the owner to the property manager and broader management team.",
-    "A9",
-    "Reflects delay between initial reporting and management notification."
-  ],
-  [
-    "Feb. 2026",
-    "Parker57 LLC provided a proposed Settlement and Release Agreement. The proposed agreement identified Parker57 LLC, GFI Development Company, LLC, and a broad range of affiliated entities, investors, consultants, insurers, attorneys, and related parties as released parties.",
-    "A10",
-    "Formal resolution discussions commenced and release terms were proposed."
-  ],
-  [
-    "Present",
-    "The matter remains unresolved. No settlement has been reached and no release has been executed.",
-    "A11",
-    "Current status of the matter."
-  ]
+  {
+    "date": "Sep. 9, 2025",
+    "contacts": [
+      "Tricia Fullerton, Owner"
+    ],
+    "event": "BuildingLink maintenance request submitted reporting medicine cabinet instability, hinge failure, and inability to close properly.",
+    "refs": [
+      [
+        "A1",
+        "https://drive.google.com/file/d/1vS8e7dui2cf8eKhfUijtu0EnJVB8mg31/view?usp=drive_link"
+      ],
+      [
+        "A2",
+        "https://drive.google.com/file/d/13H2b7oBKuKI39l4VIzTLPKriU1XomMR0/view?usp=drive_link"
+      ]
+    ],
+    "significance": "Earliest documented notice regarding the condition of the medicine cabinet."
+  },
+  {
+    "date": "Sep. 17, 2025",
+    "contacts": [
+      "Tricia Fullerton, Owner"
+    ],
+    "event": "Written notice provided to representatives of the Sponsor, GFI Development Company, LLC, management personnel, brokerage representatives, and counsel regarding ongoing medicine cabinet defects, including concerns that the cabinet appeared too heavy for its hinges and may require replacement or outside assistance.",
+    "refs": [
+      [
+        "A3",
+        "https://drive.google.com/file/d/1hQGEKFvObDUqP4M8A5QgRB3pbRiZHxPX/view?usp=drive_link"
+      ]
+    ],
+    "significance": "Escalated written notice identifying ongoing operational and safety concerns before the incident occurred."
+  },
+  {
+    "date": "Sep. 26, 2025",
+    "contacts": [
+      "Cliff Marks, Real Estate Salesperson"
+    ],
+    "event": "Follow-up communication transmitted by the owner’s real estate representative, Clifford Marks, requesting immediate attention to the reported defects after no substantive response had been received.",
+    "refs": [
+      [
+        "A4",
+        "https://drive.google.com/file/d/1v39ZO3XiFHN0T4_7LXxJiEZms0Ru9NMt/view?usp=drive_link"
+      ]
+    ],
+    "significance": "Demonstrates that concerns remained unresolved despite prior notice."
+  },
+  {
+    "date": "Sep. 29, 2025",
+    "contacts": [
+      "Alex Bass, Project Manager"
+    ],
+    "event": "The reported condition was acknowledged and maintenance personnel were directed to inspect the medicine cabinet.",
+    "refs": [
+      [
+        "A5",
+        "https://drive.google.com/file/d/1sc6Vm36s1FDSZuv8FkM5DXcqIf8CPEgl/view?usp=drive_link"
+      ]
+    ],
+    "significance": "Reflects awareness of the reported condition immediately before the incident."
+  },
+  {
+    "date": "Sep. 30, 2025",
+    "contacts": [
+      "Tricia Fullerton, Owner"
+    ],
+    "event": "A mounted architectural panel associated with the medicine cabinet assembly detached from its mounted position and struck the owner in the head.",
+    "refs": [
+      [
+        "A6",
+        "https://drive.google.com/drive/folders/1iJS5zfOCdJZYl0RJK0We4TTtt3SCkbL2?usp=drive_link"
+      ]
+    ],
+    "significance": "Incident giving rise to the claim."
+  },
+  {
+    "date": "Sep. 30, 2025",
+    "contacts": [
+      "Tricia Fullerton, Owner"
+    ],
+    "event": "Emergency medical treatment obtained following the incident. Medical providers diagnosed a concussion and provided discharge instructions concerning monitoring and neurological symptoms.",
+    "refs": [
+      [
+        "A7",
+        "https://drive.google.com/drive/folders/1BpfF2tDJNXGQ_V9tqfDebGxvXx9u9yEg?usp=drive_link"
+      ]
+    ],
+    "significance": "Initial documented medical treatment resulting from the incident."
+  },
+  {
+    "date": "Sep. 30, 2025",
+    "contacts": [
+      "FirstService Residential"
+    ],
+    "event": "The incident was reported to front desk and concierge personnel upon the owner’s return from the emergency department.",
+    "refs": [],
+    "significance": "Establishes prompt reporting following the incident."
+  },
+  {
+    "date": "Oct. 2, 2025",
+    "contacts": [
+      "Tricia Fullerton, Owner"
+    ],
+    "event": "Worsening symptoms including dizziness, lightheadedness, headache, and blurred vision required ambulance transportation and a second emergency medical evaluation. The treating physician documented a head injury occurring approximately two days earlier, noted a history of Postural Orthostatic Tachycardia Syndrome (POTS), and assessed the presentation as likely mild concussion syndrome.",
+    "refs": [
+      [
+        "A8",
+        "https://drive.google.com/drive/folders/1BpfF2tDJNXGQ_V9tqfDebGxvXx9u9yEg?usp=drive_link"
+      ]
+    ],
+    "significance": "Documents worsening symptoms requiring ambulance transport and a second emergency evaluation following the head injury."
+  },
+  {
+    "date": "Oct. 3, 2025",
+    "contacts": [
+      "FirstService Residential",
+      "GFI Development Company, LLC"
+    ],
+    "event": "Management became aware of the incident following direct communications from the owner to the property manager and broader management team.",
+    "refs": [
+      [
+        "A9",
+        "https://drive.google.com/file/d/1ZGw7e49jA0voQN7ARJOA89785m-FeYdf/view?usp=drive_link"
+      ]
+    ],
+    "significance": "Reflects delay between initial reporting and management notification."
+  },
+  {
+    "date": "Feb. 13, 2026",
+    "contacts": [
+      "GFI Development Company, LLC"
+    ],
+    "event": "Parker57 LLC provided a proposed Settlement and Release Agreement. The proposed agreement identified Parker57 LLC, GFI Development Company, LLC, and a broad range of affiliated entities, investors, consultants, insurers, attorneys, and related parties as released parties.",
+    "refs": [
+      [
+        "A10",
+        "https://drive.google.com/drive/folders/1EK2DZX5rHopPO00IiFSZWuvl7R8ar_RW?usp=drive_link"
+      ]
+    ],
+    "significance": "Formal resolution discussions commenced and release terms were proposed."
+  },
+  {
+    "date": "Present",
+    "contacts": [],
+    "event": "The matter remains unresolved. No settlement has been reached and no release has been executed.",
+    "refs": [],
+    "significance": "Current status of the matter."
+  }
 ];
-  const recordRef = (id) => '<br><span style="font-size: 10px;"><span style="font-size: 10px; color: #0645ad; text-decoration: none; font-weight: 700;">Record Ref. ' + id + '</span></span>';
-  const rowHtml = rows.map(([date, event, ref, significance]) => `<tr>
-<td style="padding: 18px 20px 18px 0px; border-bottom: 1px solid rgb(238, 238, 238); vertical-align: top; white-space: nowrap;">${date}</td>
-<td style="padding: 18px 20px 18px 0px; border-bottom: 1px solid rgb(238, 238, 238); vertical-align: top;">${event}${recordRef(ref)}</td>
-<td style="padding: 18px 0px; border-bottom: 1px solid rgb(238, 238, 238); vertical-align: top;">${significance}</td>
+  const refsHtml = (refs) => {
+    if (!refs.length) return '';
+    return '<br>' + refs.map(([label, href]) => '<span style="font-size: 10px;"><a href="' + href + '" style="font-size: 10px; color: #0645ad; text-decoration: none; font-weight: 700;" target="_blank" rel="noopener">Record Ref. ' + label + '</a></span>').join('<br>');
+  };
+  const rowHtml = rows.map((row) => `<tr>
+<td style="padding: 18px 18px 18px 0px; border-bottom: 1px solid rgb(238, 238, 238); vertical-align: top; white-space: nowrap;">${row.date}</td>
+<td style="padding: 18px 18px 18px 0px; border-bottom: 1px solid rgb(238, 238, 238); vertical-align: top;">${row.contacts.length ? row.contacts.join('<br>') : '&nbsp;'}</td>
+<td style="padding: 18px 18px 18px 0px; border-bottom: 1px solid rgb(238, 238, 238); vertical-align: top;">${row.event}${refsHtml(row.refs)}</td>
+<td style="padding: 18px 0px; border-bottom: 1px solid rgb(238, 238, 238); vertical-align: top;">${row.significance}</td>
 </tr>`).join('\n');
   const body = `    <section class="content-page">
       <div class="page-width page-width--narrow section-template--25978985873697__main-padding">
@@ -564,9 +649,10 @@ function one11ExhibitAPage() {
 <table style="width: 100%; border-collapse: collapse; font-family: Montserrat, sans-serif; font-size: 12px; line-height: 1.7; color: #000000;">
 <thead>
 <tr>
-<th style="width: 20%; text-align: left; padding: 0px 20px 14px 0px; border-bottom: 1px solid rgb(227, 227, 227); font-weight: bold; vertical-align: top; white-space: nowrap;">Date</th>
-<th style="width: 50%; text-align: left; padding: 0px 20px 14px 0px; border-bottom: 1px solid rgb(227, 227, 227); font-weight: bold; vertical-align: top;">Event</th>
-<th style="width: 30%; text-align: left; padding: 0px 0px 14px; border-bottom: 1px solid rgb(227, 227, 227); font-weight: bold; vertical-align: top;">Record Significance</th>
+<th style="width: 16%; text-align: left; padding: 0px 18px 14px 0px; border-bottom: 1px solid rgb(227, 227, 227); font-weight: bold; vertical-align: top; white-space: nowrap;">Date</th>
+<th style="width: 22%; text-align: left; padding: 0px 18px 14px 0px; border-bottom: 1px solid rgb(227, 227, 227); font-weight: bold; vertical-align: top;">Contacts</th>
+<th style="width: 38%; text-align: left; padding: 0px 18px 14px 0px; border-bottom: 1px solid rgb(227, 227, 227); font-weight: bold; vertical-align: top;">Event</th>
+<th style="width: 24%; text-align: left; padding: 0px 0px 14px; border-bottom: 1px solid rgb(227, 227, 227); font-weight: bold; vertical-align: top;">Record Significance</th>
 </tr>
 </thead>
 <tbody>
