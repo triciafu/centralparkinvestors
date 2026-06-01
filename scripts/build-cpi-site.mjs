@@ -475,9 +475,9 @@ function one11ExecutiveSummaryPage() {
 function one11ExhibitAPage() {
   const rows = [
   {
-    "date": "Sep. 9, 2025",
+    "date": "Sep 9, 2025",
     "contacts": [
-      "Tricia Fullerton, Owner"
+      "Tricia Fullerton,<br>Owner"
     ],
     "event": "BuildingLink maintenance request submitted reporting medicine cabinet instability, hinge failure, and inability to close properly.",
     "refs": [
@@ -493,9 +493,9 @@ function one11ExhibitAPage() {
     "significance": "Earliest documented notice regarding the condition of the medicine cabinet."
   },
   {
-    "date": "Sep. 17, 2025",
+    "date": "Sep 17, 2025",
     "contacts": [
-      "Tricia Fullerton, Owner"
+      "Tricia Fullerton,<br>Owner"
     ],
     "event": "Written notice provided to representatives of the Sponsor, GFI Development Company, LLC, management personnel, brokerage representatives, and counsel regarding ongoing medicine cabinet defects, including concerns that the cabinet appeared too heavy for its hinges and may require replacement or outside assistance.",
     "refs": [
@@ -507,9 +507,9 @@ function one11ExhibitAPage() {
     "significance": "Escalated written notice identifying ongoing operational and safety concerns before the incident occurred."
   },
   {
-    "date": "Sep. 26, 2025",
+    "date": "Sep 26, 2025",
     "contacts": [
-      "Cliff Marks, Real Estate Salesperson"
+      "Cliff Marks,<br>Real Estate Salesperson"
     ],
     "event": "Follow-up communication transmitted by the owner’s real estate representative, Clifford Marks, requesting immediate attention to the reported defects after no substantive response had been received.",
     "refs": [
@@ -521,9 +521,9 @@ function one11ExhibitAPage() {
     "significance": "Demonstrates that concerns remained unresolved despite prior notice."
   },
   {
-    "date": "Sep. 29, 2025",
+    "date": "Sep 29, 2025",
     "contacts": [
-      "Alex Bass, Project Manager"
+      "Alex Bass,<br>Project Manager"
     ],
     "event": "The reported condition was acknowledged and maintenance personnel were directed to inspect the medicine cabinet.",
     "refs": [
@@ -535,9 +535,9 @@ function one11ExhibitAPage() {
     "significance": "Reflects awareness of the reported condition immediately before the incident."
   },
   {
-    "date": "Sep. 30, 2025",
+    "date": "Sep 30, 2025",
     "contacts": [
-      "Tricia Fullerton, Owner"
+      "Tricia Fullerton,<br>Owner"
     ],
     "event": "A mounted architectural panel associated with the medicine cabinet assembly detached from its mounted position and struck the owner in the head.",
     "refs": [
@@ -549,9 +549,9 @@ function one11ExhibitAPage() {
     "significance": "Incident giving rise to the claim."
   },
   {
-    "date": "Sep. 30, 2025",
+    "date": "Sep 30, 2025",
     "contacts": [
-      "Tricia Fullerton, Owner"
+      "Tricia Fullerton,<br>Owner"
     ],
     "event": "Emergency medical treatment obtained following the incident. Medical providers diagnosed a concussion and provided discharge instructions concerning monitoring and neurological symptoms.",
     "refs": [
@@ -563,7 +563,7 @@ function one11ExhibitAPage() {
     "significance": "Initial documented medical treatment resulting from the incident."
   },
   {
-    "date": "Sep. 30, 2025",
+    "date": "Sep 30, 2025",
     "contacts": [
       "FirstService Residential"
     ],
@@ -572,9 +572,9 @@ function one11ExhibitAPage() {
     "significance": "Establishes prompt reporting following the incident."
   },
   {
-    "date": "Oct. 2, 2025",
+    "date": "Oct 2, 2025",
     "contacts": [
-      "Tricia Fullerton, Owner"
+      "Tricia Fullerton,<br>Owner"
     ],
     "event": "Worsening symptoms including dizziness, lightheadedness, headache, and blurred vision required ambulance transportation and a second emergency medical evaluation. The treating physician documented a head injury occurring approximately two days earlier, noted a history of Postural Orthostatic Tachycardia Syndrome (POTS), and assessed the presentation as likely mild concussion syndrome.",
     "refs": [
@@ -586,10 +586,9 @@ function one11ExhibitAPage() {
     "significance": "Documents worsening symptoms requiring ambulance transport and a second emergency evaluation following the head injury."
   },
   {
-    "date": "Oct. 3, 2025",
+    "date": "Oct 3, 2025",
     "contacts": [
-      "FirstService Residential",
-      "GFI Development Company, LLC"
+      "FirstService Residential, GFI Development Company, LLC"
     ],
     "event": "Management became aware of the incident following direct communications from the owner to the property manager and broader management team.",
     "refs": [
@@ -601,7 +600,7 @@ function one11ExhibitAPage() {
     "significance": "Reflects delay between initial reporting and management notification."
   },
   {
-    "date": "Feb. 13, 2026",
+    "date": "Feb 13, 2026",
     "contacts": [
       "GFI Development Company, LLC"
     ],
@@ -650,7 +649,7 @@ function one11ExhibitAPage() {
 <thead>
 <tr>
 <th style="width: 15%; text-align: left; padding: 0px 18px 14px 0px; border-bottom: 1px solid rgb(227, 227, 227); font-weight: bold; vertical-align: top; white-space: nowrap;">Date</th>
-<th style="width: 20%; text-align: left; padding: 0px 18px 14px 0px; border-bottom: 1px solid rgb(227, 227, 227); font-weight: bold; vertical-align: top;">Contacts</th>
+<th style="width: 20%; text-align: left; padding: 0px 18px 14px 0px; border-bottom: 1px solid rgb(227, 227, 227); font-weight: bold; vertical-align: top;">Contact(s)</th>
 <th style="width: 35%; text-align: left; padding: 0px 18px 14px 0px; border-bottom: 1px solid rgb(227, 227, 227); font-weight: bold; vertical-align: top;">Event</th>
 <th style="width: 30%; text-align: left; padding: 0px 0px 14px; border-bottom: 1px solid rgb(227, 227, 227); font-weight: bold; vertical-align: top;">Record Significance</th>
 </tr>
