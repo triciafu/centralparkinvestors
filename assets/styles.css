@@ -974,6 +974,14 @@ sticky-header.header-wrapper,
     font-size: 16px;
   }
 
+  .cpi-breadcrumb {
+    display: none;
+  }
+
+  .cpi-page-toolbar {
+    justify-content: flex-end;
+  }
+
   .contact__inner {
     padding: 21px 28px 120px;
   }
