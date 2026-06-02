@@ -419,14 +419,14 @@ sticky-header.header-wrapper,
 
 .cpi-page-download a {
   align-items: center;
-  color: #000;
+  color: #0645ad;
   display: inline-flex;
   font-family: Montserrat, sans-serif;
   font-size: 10px;
   font-weight: 700;
   gap: 6px;
   letter-spacing: .08em;
-  text-decoration: underline;
+  text-decoration: none;
   text-transform: uppercase;
 }
 
