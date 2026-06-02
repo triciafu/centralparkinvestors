@@ -208,13 +208,13 @@ function pageToolbarHtml(parentPath, parentLabel, currentLabel, pdfPath) {
 function documentPdfPathForUrl(url) {
   const paths = {
     '/pages/o1101': '/assets/documents/One11%20Residences%20-%20Injury%20Claim.pdf',
-    '/pages/o1101/exhibita': '/assets/documents/one11-residences-exhibit-a.pdf',
-    '/pages/cc01': '/assets/documents/california-closets-commercial-dispute.pdf',
-    '/pages/cc01/exhibita': '/assets/documents/california-closets-exhibit-a.pdf',
-    '/pages/cc01/exhibitb': '/assets/documents/california-closets-exhibit-b.pdf',
-    '/pages/cc01/exhibitc': '/assets/documents/california-closets-exhibit-c.pdf',
-    '/pages/cc01/exhibitd': '/assets/documents/california-closets-exhibit-d.pdf',
-    '/pages/cc01/exhibith': '/assets/documents/california-closets-exhibit-h.pdf',
+    '/pages/o1101/exhibita': '/assets/documents/One11%20Residences%20-%20Exhibit%20A.pdf',
+    '/pages/cc01': '/assets/documents/California%20Closets%20-%20Commercial%20Dispute.pdf',
+    '/pages/cc01/exhibita': '/assets/documents/California%20Closets%20-%20Exhibit%20A.pdf',
+    '/pages/cc01/exhibitb': '/assets/documents/California%20Closets%20-%20Exhibit%20B.pdf',
+    '/pages/cc01/exhibitc': '/assets/documents/California%20Closets%20-%20Exhibit%20C.pdf',
+    '/pages/cc01/exhibitd': '/assets/documents/California%20Closets%20-%20Exhibit%20D.pdf',
+    '/pages/cc01/exhibith': '/assets/documents/California%20Closets%20-%20Exhibit%20H.pdf',
   };
   return paths[url] || '';
 }
