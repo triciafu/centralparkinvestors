@@ -411,6 +411,27 @@ sticky-header.header-wrapper,
   text-transform: uppercase;
 }
 
+.cpi-page-download {
+  margin: -30px auto 50px;
+  max-width: 800px;
+  text-align: center;
+}
+
+.cpi-page-download a {
+  color: #000;
+  font-family: Montserrat, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+.cpi-page-download a:hover,
+.cpi-page-download a:focus {
+  opacity: .55;
+}
+
 .contact__title {
   margin: 100px 0 50px;
   color: #000;
