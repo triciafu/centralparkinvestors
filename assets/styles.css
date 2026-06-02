@@ -414,17 +414,31 @@ sticky-header.header-wrapper,
 .cpi-page-download {
   margin: -30px auto 50px;
   max-width: 800px;
-  text-align: center;
+  text-align: right;
 }
 
 .cpi-page-download a {
+  align-items: center;
   color: #000;
+  display: inline-flex;
   font-family: Montserrat, sans-serif;
   font-size: 10px;
   font-weight: 700;
+  gap: 6px;
   letter-spacing: .08em;
   text-decoration: underline;
   text-transform: uppercase;
+}
+
+.cpi-page-download svg {
+  display: block;
+  fill: none;
+  height: 13px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+  width: 13px;
 }
 
 .cpi-page-download a:hover,
