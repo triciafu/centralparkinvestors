@@ -568,7 +568,7 @@ function one11ExhibitAPage() {
     "contacts": [
       "Tricia Fullerton,<br>Owner"
     ],
-    "event": "A mounted architectural panel associated with the medicine cabinet assembly detached from its mounted position and struck the owner in the head.",
+    "event": "A substantial glass-faced architectural panel associated with the medicine cabinet assembly detached from its mounted position and struck the owner in the head.",
     "refs": [
       [
         "A6",
