@@ -197,8 +197,37 @@ function breadcrumbHtml(parentPath, parentLabel, currentLabel) {
   return '<nav class="cpi-breadcrumb" aria-label="Breadcrumb" style="max-width: 800px; margin: 0 auto 34px; font-family: Montserrat, sans-serif; font-size: 10px; line-height: 1.8; letter-spacing: .08em; text-transform: uppercase;"><a href="' + parentPath + '" style="color: #000; text-decoration: none;">' + parentLabel + '</a><span style="display: inline-block; margin: 0 8px; color: #777;">/</span><span style="color: #777;">' + currentLabel + '</span></nav>';
 }
 
+function pageDownloadHtml(pdfPath) {
+  return '<p class="cpi-page-download"><a href="' + pdfPath + '" download><svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M12 3v10m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg><span>Download PDF</span></a></p>';
+}
+
+function pageToolbarHtml(parentPath, parentLabel, currentLabel, pdfPath) {
+  return '<div class="cpi-page-toolbar"><nav class="cpi-breadcrumb" aria-label="Breadcrumb" style="font-family: Montserrat, sans-serif; font-size: 10px; line-height: 1.8; letter-spacing: .08em; text-transform: uppercase;"><a href="' + parentPath + '" style="color: #000; text-decoration: none;">' + parentLabel + '</a><span style="display: inline-block; margin: 0 8px; color: #777;">/</span><span style="color: #777;">' + currentLabel + '</span></nav>' + pageDownloadHtml(pdfPath) + '</div>';
+}
+
+function documentPdfPathForUrl(url) {
+  const paths = {
+    '/pages/o1101': '/assets/documents/one11-residences-injury-claim.pdf',
+    '/pages/o1101/exhibita': '/assets/documents/one11-residences-exhibit-a.pdf',
+    '/pages/cc01': '/assets/documents/california-closets-commercial-dispute.pdf',
+    '/pages/cc01/exhibita': '/assets/documents/california-closets-exhibit-a.pdf',
+    '/pages/cc01/exhibitb': '/assets/documents/california-closets-exhibit-b.pdf',
+    '/pages/cc01/exhibitc': '/assets/documents/california-closets-exhibit-c.pdf',
+    '/pages/cc01/exhibitd': '/assets/documents/california-closets-exhibit-d.pdf',
+    '/pages/cc01/exhibith': '/assets/documents/california-closets-exhibit-h.pdf',
+  };
+  return paths[url] || '';
+}
+
 function addBreadcrumbToFragment(fragment, parentPath, parentLabel, currentLabel) {
   return fragment.replace(/<nav class="cpi-breadcrumb"[\s\S]*?<\/nav>\n?/, '').replace(/(<div class="page-width page-width--narrow section-template--25978985873697__main-padding">\n)/, '$1  ' + breadcrumbHtml(parentPath, parentLabel, currentLabel) + '\n');
+}
+
+function addToolbarToFragment(fragment, parentPath, parentLabel, currentLabel, pdfPath) {
+  return fragment
+    .replace(/<div class="cpi-page-toolbar">[\s\S]*?<\/div>\n?/, '')
+    .replace(/<nav class="cpi-breadcrumb"[\s\S]*?<\/nav>\n?/, '')
+    .replace(/(<div class="page-width page-width--narrow section-template--25978985873697__main-padding">\n)/, '$1  ' + pageToolbarHtml(parentPath, parentLabel, currentLabel, pdfPath) + '\n');
 }
 
 function boldRecordRefs(html) {
@@ -633,7 +662,7 @@ function one11ExhibitAPage() {
 </tr>`).join('\n');
   const body = `    <section class="content-page">
       <div class="page-width page-width--narrow section-template--25978985873697__main-padding">
-  ${breadcrumbHtml('/pages/o1101', 'One11 Residences: Injury Claim', 'Exhibit A')}
+  ${pageToolbarHtml('/pages/o1101', 'One11 Residences: Injury Claim', 'Exhibit A', documentPdfPathForUrl('/pages/o1101/exhibita'))}
   <h1 class="main-page-title page-title h0 scroll-trigger animate--fade-in">
     One11 Residences - Exhibit A
   </h1>
@@ -687,7 +716,7 @@ for (const page of pages) {
     fragment = fragment.replace('padding: 50px 24px;\n    text-align: center;', 'padding: 0 24px 100px;\n    text-align: center;');
   }
   if (page.url === '/pages/cc01') {
-    fragment = addBreadcrumbToFragment(fragment, '/', 'Home', 'California Closets: Commercial Dispute');
+    fragment = addToolbarToFragment(fragment, '/', 'Home', 'California Closets: Commercial Dispute', documentPdfPathForUrl(page.url));
     fragment = fragment
       .replace(/<a\s+href="\/pages\/cc01\/(exhibita|exhibitb|exhibitc|exhibitd|exhibith)"\s*>/g, '<a href="/pages/cc01/$1" target="_blank" rel="noopener">')
       .replace(/<a\s+href="\/pages\/authorized-users"\s*>/g, '<a href="/pages/authorized-users" target="_blank" rel="noopener">');
@@ -696,7 +725,7 @@ for (const page of pages) {
     fragment = fragment.replaceAll('California Closets - Exhibit E', 'California Closets - Exhibit H');
   }
   if (page.url.startsWith('/pages/cc01/exhibit')) {
-    fragment = addBreadcrumbToFragment(fragment, '/pages/cc01', 'California Closets: Commercial Dispute', page.title.replace('California Closets - ', ''));
+    fragment = addToolbarToFragment(fragment, '/pages/cc01', 'California Closets: Commercial Dispute', page.title.replace('California Closets - ', ''), documentPdfPathForUrl(page.url));
   }
   const sectionClass = page.type === 'contact' ? 'contact-page' : page.url === '/pages/authorized-users' ? 'content-page authorized-users-page' : 'content-page';
   const body = `    <section class="${sectionClass}">\n      ${fragment}\n    </section>`;
