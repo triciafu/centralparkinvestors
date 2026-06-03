@@ -504,7 +504,7 @@ function notFoundPage() {
     description: 'The requested page could not be found on Central Park Investors.',
     canonicalPath: '/404',
     body,
-    assetPrefix: '',
+    assetPrefix: '/',
   });
 }
 
