@@ -491,7 +491,7 @@ function notFoundPage() {
       <div class="not-found-page__inner">
         <p class="not-found-page__eyebrow">404</p>
         <h1 id="not-found-title" class="not-found-page__title">Page Not Found</h1>
-        <p class="not-found-page__text">The page you are looking for is unavailable or may not have been published yet.</p>
+        <p class="not-found-page__text">The page you are looking for is unavailable or may not have been published yet. Please select an option below or contact ops@centralparkivestors.com for assistance.</p>
         <div class="not-found-page__actions">
           <a class="not-found-page__link" href="/">Return Home</a>
           <a class="not-found-page__link" href="/pages/authorized-users" rel="nofollow">Authorized Users</a>
