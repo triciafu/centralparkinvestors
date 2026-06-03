@@ -486,6 +486,28 @@ function homepage() {
   });
 }
 
+function notFoundPage() {
+  const body = `    <section class="not-found-page" aria-labelledby="not-found-title">
+      <div class="not-found-page__inner">
+        <p class="not-found-page__eyebrow">404</p>
+        <h1 id="not-found-title" class="not-found-page__title">Page Not Found</h1>
+        <p class="not-found-page__text">The page you are looking for is unavailable or may not have been published yet.</p>
+        <div class="not-found-page__actions">
+          <a class="not-found-page__link" href="/">Return Home</a>
+          <a class="not-found-page__link" href="/pages/authorized-users" rel="nofollow">Authorized Users</a>
+        </div>
+      </div>
+    </section>`;
+
+  return layout({
+    title: 'Page Not Found',
+    description: 'The requested page could not be found on Central Park Investors.',
+    canonicalPath: '/404',
+    body,
+    assetPrefix: '',
+  });
+}
+
 function one11ExecutiveSummaryPage() {
   const body = `    <section class="content-page">
       <div class="page-width page-width--narrow section-template--25978985873697__main-padding">
@@ -707,6 +729,7 @@ for (const asset of ['0de42eea49fd4fe89478ad34f9ad8de8.thumbnail.0000000000_1100
 copyAsset(heroVideo, 'hero_1.mp4');
 
 writeFile('index.html', homepage());
+writeFile('404.html', notFoundPage());
 
 for (const page of pages) {
   const source = readSource(page.source);
