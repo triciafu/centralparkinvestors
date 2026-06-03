@@ -31,7 +31,7 @@ function parseAccessRoutes() {
   const routes = new Map();
   const routeList = process.env.CPI_ACCESS_ROUTES || '';
 
-  for (const line of routeList.split(/\r?\n/)) {
+  for (const line of routeList.split(/[;\r\n]+/)) {
     const trimmed = line.trim();
     if (!trimmed || trimmed.startsWith('#')) continue;
 
