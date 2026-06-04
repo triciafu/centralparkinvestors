@@ -560,7 +560,7 @@ function one11ExhibitAPage() {
   {
     "date": "Sep 26, 2025",
     "contacts": [
-      "Cliff Marks,<br>Real Estate Salesperson"
+      "Cliff Marks,<br>Real Estate Salesperson at Brown Harris Stevens"
     ],
     "event": "Follow-up communication transmitted by the owner’s real estate representative, Clifford Marks, requesting immediate attention to the reported defects after no substantive response had been received.",
     "refs": [
@@ -574,9 +574,9 @@ function one11ExhibitAPage() {
   {
     "date": "Sep 29, 2025",
     "contacts": [
-      "Alex Bass,<br>Project Manager"
+      "Alex Bass,<br>Project Manager at GFI Development Company, LLC"
     ],
-    "event": "The reported condition was acknowledged and maintenance personnel were directed to inspect the medicine cabinet.",
+    "event": "The reported condition was acknowledged by GFI Development Company, LLC and maintenance personnel were directed to inspect the medicine cabinet.",
     "refs": [
       [
         "A5",
@@ -618,7 +618,7 @@ function one11ExhibitAPage() {
     "contacts": [
       "FirstService Residential"
     ],
-    "event": "The incident was reported to front desk and concierge personnel upon the owner’s return from the emergency department.",
+    "event": "The incident was reported to concierge personnel upon the owner’s return from the emergency department.",
     "refs": [],
     "significance": "Establishes prompt reporting following the incident."
   },
