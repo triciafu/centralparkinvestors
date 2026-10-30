@@ -2,6 +2,38 @@
 
 Standalone static site migrated from Shopify.
 
+## Local website updates
+
+The rebuild is portable: all HTML sources live in `source/site/`, and shared images,
+video, CSS, JavaScript, favicon, and PDFs live in `assets/`. The sources were
+copied from the existing site to preserve its current content exactly; the old
+Shopify exports and theme ZIP are no longer needed.
+
+Edit HTML in `source/site/index.html`, `source/site/404.html`, or
+`source/site/pages/.../index.html`. Edit shared styling and behavior directly in
+`assets/styles.css` and `assets/site.js`. API functions remain in `api/`.
+Do not edit generated root/page HTML directly: a rebuild replaces matching files.
+For shared header/footer changes, update the source HTML pages together.
+
+Use Node.js 22 or newer; no npm packages are required:
+
+```sh
+node scripts/build-cpi-site.mjs --check
+node scripts/build-cpi-site.mjs
+```
+
+The script resolves paths from its own location, validates all HTML and local
+linked files before writing, and never deletes the pages folder. Only changed
+HTML files are written. If a source is removed or renamed, remove its old output
+explicitly after reviewing incoming links; rebuilding does not delete old outputs.
+Commit source HTML and generated HTML together when you choose to publish changes.
+Keep Vercel serving the repository root; `source/site/` is not the deployment root.
+A basic static preview will not execute the Vercel API functions; form testing
+requires a Vercel environment with the variables below.
+
+Node may not be on this Mac's shell PATH yet. Codex's bundled runtime was used to
+verify this rebuild; install a standalone Node.js runtime for normal terminal use.
+
 ## Vercel Environment Variables
 
 Set these in the Vercel project before using the forms.
