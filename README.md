@@ -10,7 +10,7 @@ copied from the existing site to preserve its current content exactly; the old
 Shopify exports and theme ZIP are no longer needed.
 
 Edit HTML in `source/site/index.html`, `source/site/404.html`, or
-`source/site/pages/.../index.html`. Edit shared styling and behavior directly in
+`source/site/cases/.../index.html` or `source/site/legal/.../index.html`. Edit shared styling and behavior directly in
 `assets/styles.css` and `assets/site.js`. API functions remain in `api/`.
 Do not edit generated root/page HTML directly: a rebuild replaces matching files.
 For shared header/footer changes, update the source HTML pages together.
@@ -48,9 +48,9 @@ For one PIN, use:
 For multiple PINs, use `CPI_ACCESS_ROUTES` instead. Enter one PIN-to-URL pair per line:
 
 ```text
-731604=https://centralparkinvestors.com/pages/cc01/
-248913=https://centralparkinvestors.com/pages/cc01-exhibita/
-582201=https://centralparkinvestors.com/pages/exhibith/
+731604=https://centralparkinvestors.com/cases/cc01/
+248913=https://centralparkinvestors.com/cases/cc01/exhibita/
+582201=https://centralparkinvestors.com/cases/cc01/exhibith/
 ```
 
 The PINs are checked by `/api/cpi-access` and are not stored in public browser code.
@@ -62,3 +62,14 @@ The contact form posts to `/api/contact` and sends email through Resend.
 - `RESEND_API_KEY`: Resend API key used by the serverless function
 - `CONTACT_FROM_EMAIL`: verified sender address, for example `Central Park Investors <no-reply@centralparkinvestors.com>`
 - `CONTACT_TO_EMAIL`: recipient address; defaults to `ops@centralparkinvestors.com` if omitted
+
+## Page locations and legacy links
+
+Privacy Policy and Terms and Conditions live under `/legal/`. Case pages and their exhibits live under `/cases/`. Contact and Authorized Access
+remain under `/pages/`. Other `/pages/` HTML sources are legacy redirect fallbacks;
+edit case and legal content in the new locations.
+`vercel.json` permanently redirects migrated page URLs and their explicit
+`index.html` variants directly to the new locations. Legacy exhibit aliases are
+covered as well. Keep these redirects so existing bookmarks continue to work.
+Existing Vercel PIN destination environment variables using old URLs remain
+usable through redirects; optionally update them to the new `/cases/` URLs.

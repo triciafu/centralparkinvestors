@@ -14,7 +14,7 @@ export function build({ check = false } = {}) {
       if (entry.isSymbolicLink()) throw new Error('Source symlinks are not supported: ' + name);
       if (entry.isDirectory()) collect(path.join(directory, entry.name), name);
       else if (entry.name.endsWith('.html')) {
-        if (name !== 'index.html' && name !== '404.html' && !name.startsWith('pages' + path.sep)) {
+        if (name !== 'index.html' && name !== '404.html' && !['pages', 'legal', 'cases'].some(directory => name.startsWith(directory + path.sep))) {
           throw new Error('Unexpected HTML source location: ' + name);
         }
         const html = fs.readFileSync(path.join(directory, entry.name), 'utf8');
