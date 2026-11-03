@@ -54,6 +54,12 @@ pagination visually after content changes, and include updated PDFs in the commi
 The HTML rebuild alone does not rebuild PDFs. No PDF tools are required on Vercel
 because the generated PDFs are published as static files.
 
+PDFs embed Montserrat, matching the case pages' font family, with light body text,
+regular titles, and heavier section headings and references. Font files and their
+SIL Open Font License are included in `assets/fonts/montserrat/`; rebuilds need
+no font downloads or system font installation. Print sizing and pagination are
+adapted to the PDF page dimensions.
+
 ## Vercel Environment Variables
 
 Set these in the Vercel project before using the forms.

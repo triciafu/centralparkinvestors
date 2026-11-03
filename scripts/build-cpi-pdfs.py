@@ -18,10 +18,22 @@ from reportlab.lib.enums import TA_LEFT
 from reportlab.lib.pagesizes import letter, landscape
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import inch
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, KeepTogether
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = 'https://centralparkinvestors.com'
+
+
+def register_fonts():
+    for weight in ('Light', 'Regular', 'Medium', 'SemiBold', 'Bold', 'Italic', 'BoldItalic'):
+        name = 'Montserrat-' + weight
+        pdfmetrics.registerFont(TTFont(name, str(ROOT / 'assets/fonts/montserrat' / (name + '.ttf'))))
+    for weight in ('Light', 'Regular', 'Medium', 'SemiBold', 'Bold'):
+        pdfmetrics.registerFontFamily('Montserrat-' + weight, normal='Montserrat-' + weight,
+                                     bold='Montserrat-Bold', italic='Montserrat-Italic',
+                                     boldItalic='Montserrat-BoldItalic')
 
 
 def clean(text):
@@ -39,6 +51,8 @@ def inline(node, route):
         elif child.tag == 'a' and child.get('href'):
             href = urljoin(SITE + route, child.get('href'))
             content = '<a href="' + escape(href, quote=True) + '" color="#234c74"><u>' + content + '</u></a>'
+            weight = 'Bold' if re.search(r'font-weight:\s*(?:700|bold)', child.get('style', '')) else 'Regular'
+            content = '<font name="Montserrat-' + weight + '">' + content + '</font>'
         elif child.tag in ('b', 'strong'):
             content = '<b>' + content + '</b>'
         elif child.tag in ('em', 'i'):
@@ -60,16 +74,16 @@ def build(source, output):
     wide = any(len(t.xpath('./thead/tr/th')) >= 5 for t in tables)
     pagesize = landscape(letter) if wide else letter
     width = pagesize[0] - 1.2 * inch
-    body = ParagraphStyle('Body', fontName='Helvetica', fontSize=10, leading=14, spaceAfter=9)
+    body = ParagraphStyle('Body', fontName='Montserrat-Light', fontSize=10, leading=14, spaceAfter=9)
     cell = ParagraphStyle('Cell', parent=body, fontSize=8.5 if wide else 9, leading=12, spaceAfter=0)
-    heading = ParagraphStyle('Title', parent=body, fontSize=16, leading=21, spaceAfter=20)
+    heading = ParagraphStyle('Title', parent=body, fontName='Montserrat-Regular', fontSize=16, leading=21, spaceAfter=20)
     story = [Paragraph(escape(clean(title)), heading)]
 
     def blocks(node):
         if node.tag == 'table':
             rows = node.xpath('./thead/tr | ./tbody/tr | ./tr')
             count = max(len(r.xpath('./th | ./td')) for r in rows)
-            data = [[Paragraph(inline(c, route), cell) for c in r.xpath('./th | ./td')] for r in rows]
+            data = [[Paragraph(('<b>' + inline(c, route) + '</b>') if c.tag == 'th' else inline(c, route), cell) for c in r.xpath('./th | ./td')] for r in rows]
             # Preserve the page's column proportions, with enough width for date labels.
             first = rows[0].xpath('./th | ./td')
             percentages = [re.search(r'(?:^|;)\s*width:\s*([\d.]+)%', c.get('style', '')) for c in first]
@@ -102,9 +116,17 @@ def build(source, output):
                 if node.tag == 'li':
                     markup = '&#8226; ' + markup
                 is_heading = node.tag.startswith('h') or 'cpi-emphasis-line' in node.get('class', '') or (len(node) == 1 and node[0].tag == 'strong')
-                style = ParagraphStyle('Section', parent=body, keepWithNext=True) if is_heading else body
+                if 'cpi-emphasis-line' in node.get('class', ''):
+                    markup = '<font name="Montserrat-SemiBold">' + re.sub(r'</?b>', '', markup) + '</font>'
+                style = ParagraphStyle('Section', parent=body, fontName='Montserrat-SemiBold', keepWithNext=True) if is_heading else body
                 paragraph = Paragraph(markup, style)
-                story.append(KeepTogether([paragraph]) if node.xpath('.//a') else paragraph)
+                if node.xpath('.//a'):
+                    group = [paragraph]
+                    if story and isinstance(story[-1], Paragraph) and story[-1].style.keepWithNext:
+                        group.insert(0, story.pop())
+                    story.append(KeepTogether(group))
+                else:
+                    story.append(paragraph)
         else:
             if node.text and node.text.strip():
                 story.append(Paragraph(escape(clean(node.text)), body))
@@ -119,14 +141,14 @@ def build(source, output):
         canvas.saveState()
         canvas.setTitle(title)
         canvas.setAuthor('Central Park Investors')
-        canvas.setFont('Helvetica', 10)
+        canvas.setFont('Montserrat-Regular', 10)
         canvas.setFillColor(colors.HexColor('#333333'))
         canvas.drawString(doc.leftMargin, pagesize[1] - 35, 'C E N T R A L  P A R K  I N V E S T O R S')
-        canvas.setFont('Helvetica', 7)
+        canvas.setFont('Montserrat-Light', 7)
         canvas.drawString(doc.leftMargin, pagesize[1] - 49, 'PRIVATE INVESTMENT AND ASSET MANAGEMENT')
         canvas.setStrokeColor(colors.HexColor('#cccccc'))
         canvas.line(doc.leftMargin, pagesize[1] - 59, pagesize[0] - doc.rightMargin, pagesize[1] - 59)
-        canvas.setFont('Helvetica', 7)
+        canvas.setFont('Montserrat-Light', 7)
         canvas.drawString(doc.leftMargin, 27, 'CONFIDENTIAL SETTLEMENT COMMUNICATION')
         canvas.drawRightString(pagesize[0] - doc.rightMargin, 27, str(doc.page))
         canvas.restoreState()
@@ -135,6 +157,17 @@ def build(source, output):
 
     # Verify complete text and all supporting URLs before replacing any downloads.
     reader = PdfReader(output)
+    embedded = set()
+    for page in reader.pages:
+        for resource in page['/Resources']['/Font'].get_object().values():
+            font = resource.get_object()
+            name = str(font.get('/BaseFont', ''))
+            if 'Montserrat' in name:
+                if '/FontFile2' not in font['/FontDescriptor']:
+                    raise ValueError(f'{output.name}: Montserrat font is not embedded')
+                embedded.add(name.split('+')[-1])
+    if not {'Montserrat-Light', 'Montserrat-Regular', 'Montserrat-SemiBold'} <= embedded:
+        raise ValueError(f'{output.name}: expected Montserrat weights are missing')
     text = '\n'.join(p.extract_text() or '' for p in reader.pages)
     expected = tokens(' '.join(content.itertext()))
     missing = expected - tokens(text)
@@ -160,6 +193,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output-dir', type=Path, default=ROOT / 'assets/documents')
     args = parser.parse_args()
+    register_fonts()
     with TemporaryDirectory(prefix='cpi-pdfs-') as temp:
         staged = []
         for source in sorted((ROOT / 'source/site/cases').rglob('index.html')):
