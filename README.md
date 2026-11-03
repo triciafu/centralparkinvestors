@@ -34,6 +34,26 @@ requires a Vercel environment with the variables below.
 Node may not be on this Mac's shell PATH yet. Codex's bundled runtime was used to
 verify this rebuild; install a standalone Node.js runtime for normal terminal use.
 
+## Rebuilding the PDF downloads
+
+PDFs are generated from the same `source/site/cases/` HTML as the website. After
+editing a case or exhibit, rebuild both HTML and PDFs before publishing:
+
+```sh
+python3 -m venv /tmp/cpi-pdf-env
+/tmp/cpi-pdf-env/bin/python -m pip install -r scripts/requirements-pdf.txt
+node scripts/build-cpi-site.mjs
+/tmp/cpi-pdf-env/bin/python scripts/build-cpi-pdfs.py
+```
+
+The PDF builder checks complete body text and all supporting link destinations
+before replacing any of the eight downloads in `assets/documents/`. It includes
+no prepared-date line. Historical dates within the case records remain intact.
+Use `--output-dir /tmp/cpi-pdf-preview` to generate a review copy first. Review
+pagination visually after content changes, and include updated PDFs in the commit.
+The HTML rebuild alone does not rebuild PDFs. No PDF tools are required on Vercel
+because the generated PDFs are published as static files.
+
 ## Vercel Environment Variables
 
 Set these in the Vercel project before using the forms.
