@@ -115,7 +115,19 @@ def build(source, output):
                     markup = '<b>' + markup + '</b>'
                 if node.tag == 'li':
                     parent = node.getparent()
-                    marker = str(parent.index(node) + 1) + '. ' if parent is not None and parent.tag == 'ol' else '&#8226; '
+                    if parent is not None and parent.tag == 'ol':
+                        number = int(parent.get('start', '1')) + parent.index(node)
+                        label = str(number)
+                        if parent.get('type') in ('a', 'A'):
+                            label = ''
+                            while number:
+                                number, remainder = divmod(number - 1, 26)
+                                label = chr(ord('a') + remainder) + label
+                            if parent.get('type') == 'A':
+                                label = label.upper()
+                        marker = label + '. '
+                    else:
+                        marker = '&#8226; '
                     markup = marker + markup
                 fully_bold = (len(node) == 1 and node[0].tag == 'strong'
                               and not (node.text or '').strip() and not (node[0].tail or '').strip())
