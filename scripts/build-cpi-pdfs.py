@@ -114,8 +114,12 @@ def build(source, output):
                 if node.tag.startswith('h'):
                     markup = '<b>' + markup + '</b>'
                 if node.tag == 'li':
-                    markup = '&#8226; ' + markup
-                is_heading = node.tag.startswith('h') or 'cpi-emphasis-line' in node.get('class', '') or (len(node) == 1 and node[0].tag == 'strong')
+                    parent = node.getparent()
+                    marker = str(parent.index(node) + 1) + '. ' if parent is not None and parent.tag == 'ol' else '&#8226; '
+                    markup = marker + markup
+                fully_bold = (len(node) == 1 and node[0].tag == 'strong'
+                              and not (node.text or '').strip() and not (node[0].tail or '').strip())
+                is_heading = node.tag.startswith('h') or 'cpi-emphasis-line' in node.get('class', '') or fully_bold
                 if 'cpi-emphasis-line' in node.get('class', ''):
                     markup = '<font name="Montserrat-SemiBold">' + re.sub(r'</?b>', '', markup) + '</font>'
                 style = ParagraphStyle('Section', parent=body, fontName='Montserrat-SemiBold', keepWithNext=True) if is_heading else body
