@@ -80,7 +80,18 @@ def build(source, output):
     story = [Paragraph(escape(clean(title)), heading)]
 
     def blocks(node):
-        if node.tag == 'table':
+        if node.tag in ('ol', 'ul') and len(node) <= 10:
+            start = len(story)
+            if start >= 2 and isinstance(story[-2], Paragraph) and getattr(story[-2].style, 'keepWithNext', False) and isinstance(story[-1], Paragraph):
+                start -= 2
+            elif start and isinstance(story[-1], Paragraph) and getattr(story[-1].style, 'keepWithNext', False):
+                start -= 1
+            for child in node:
+                blocks(child)
+            group = story[start:]
+            del story[start:]
+            story.append(KeepTogether(group))
+        elif node.tag == 'table':
             rows = node.xpath('./thead/tr | ./tbody/tr | ./tr')
             count = max(len(r.xpath('./th | ./td')) for r in rows)
             data = [[Paragraph(('<b>' + inline(c, route) + '</b>') if c.tag == 'th' else inline(c, route), cell) for c in r.xpath('./th | ./td')] for r in rows]
@@ -138,7 +149,7 @@ def build(source, output):
                 paragraph = Paragraph(markup, style)
                 if node.xpath('.//a'):
                     group = [paragraph]
-                    if story and isinstance(story[-1], Paragraph) and story[-1].style.keepWithNext:
+                    if story and isinstance(story[-1], Paragraph) and getattr(story[-1].style, 'keepWithNext', False):
                         group.insert(0, story.pop())
                     story.append(KeepTogether(group))
                 else:
