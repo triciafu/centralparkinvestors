@@ -86,6 +86,8 @@ def build(source, output):
                 start -= 2
             elif start and isinstance(story[-1], Paragraph) and getattr(story[-1].style, 'keepWithNext', False):
                 start -= 1
+            elif start and isinstance(story[-1], Paragraph) and story[-1].getPlainText().rstrip().endswith(':'):
+                start -= 1
             for child in node:
                 blocks(child)
             group = story[start:]
