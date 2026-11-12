@@ -92,7 +92,11 @@ def build(source, output):
                 blocks(child)
             group = story[start:]
             del story[start:]
-            story.append(KeepTogether(group))
+            # Keep short lists together; let long lists flow across pages.
+            if len(" ".join(node.itertext())) > 1000:
+                story.extend(group)
+            else:
+                story.append(KeepTogether(group))
         elif node.tag == 'table':
             rows = node.xpath('./thead/tr | ./tbody/tr | ./tr')
             count = max(len(r.xpath('./th | ./td')) for r in rows)
@@ -234,8 +238,8 @@ def main():
             destination = Path(temp) / name
             build(source, destination)
             staged.append((destination, args.output_dir / name))
-        if len(staged) != 8:
-            raise ValueError(f'Expected eight case PDFs; found {len(staged)}')
+        if len(staged) != 9:
+            raise ValueError(f'Expected nine case PDFs; found {len(staged)}')
         args.output_dir.mkdir(parents=True, exist_ok=True)
         for source, destination in staged:
             destination.write_bytes(source.read_bytes())
