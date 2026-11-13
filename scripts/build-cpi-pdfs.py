@@ -153,7 +153,7 @@ def build(source, output):
                     markup = '<font name="Montserrat-SemiBold">' + re.sub(r'</?b>', '', markup) + '</font>'
                 style = ParagraphStyle('Section', parent=body, fontName='Montserrat-SemiBold', keepWithNext=True) if is_heading else body
                 paragraph = Paragraph(markup, style)
-                if node.xpath('.//a'):
+                if node.xpath('.//a') and not paragraph.getPlainText().rstrip().endswith(':'):
                     group = [paragraph]
                     if story and isinstance(story[-1], Paragraph) and getattr(story[-1].style, 'keepWithNext', False):
                         group.insert(0, story.pop())
