@@ -51,7 +51,7 @@ def inline(node, route):
         elif child.tag == 'a' and child.get('href'):
             href = urljoin(SITE + route, child.get('href'))
             content = '<a href="' + escape(href, quote=True) + '" color="#234c74"><u>' + content + '</u></a>'
-            weight = 'Bold' if re.search(r'font-weight:\s*(?:700|bold)', child.get('style', '')) else 'Regular'
+            weight = 'Bold'
             content = '<font name="Montserrat-' + weight + '">' + content + '</font>'
         elif child.tag in ('b', 'strong'):
             content = '<b>' + content + '</b>'
