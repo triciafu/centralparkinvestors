@@ -182,7 +182,8 @@ def build(source, output):
         canvas.setStrokeColor(colors.HexColor('#cccccc'))
         canvas.line(doc.leftMargin, pagesize[1] - 59, pagesize[0] - doc.rightMargin, pagesize[1] - 59)
         canvas.setFont('Montserrat-Light', 7)
-        canvas.drawString(doc.leftMargin, 27, 'CONFIDENTIAL SETTLEMENT COMMUNICATION')
+        if route.startswith('/cases/cc01/'):
+            canvas.drawString(doc.leftMargin, 27, 'Notice of Breach and Demand - Job No. 245712')
         canvas.drawRightString(pagesize[0] - doc.rightMargin, 27, str(doc.page))
         canvas.restoreState()
     SimpleDocTemplate(str(output), pagesize=pagesize, leftMargin=.6*inch, rightMargin=.6*inch,
