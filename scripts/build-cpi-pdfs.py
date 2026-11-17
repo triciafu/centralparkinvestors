@@ -119,6 +119,8 @@ def build(source, output):
             ]))
             if count == 2 and len(data) <= 10:
                 group = [Spacer(1, 10), table, Spacer(1, 16)]
+                if story and isinstance(story[-1], Paragraph) and getattr(story[-1].style, 'keepWithNext', False):
+                    group.insert(0, story.pop())
                 if len(story) >= 2 and isinstance(story[-2], Paragraph) and 'CURRENT DOCUMENTED EXPOSURE SUMMARY' in story[-2].text:
                     group = story[-2:] + group
                     del story[-2:]
